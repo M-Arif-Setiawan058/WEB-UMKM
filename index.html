@@ -29,9 +29,11 @@
       margin: 0;
       padding: 0;
     }
+
     html {
       scroll-behavior: smooth;
     }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--black);
@@ -39,6 +41,7 @@
       overflow-x: hidden;
       cursor: none;
     }
+
     .cursor {
       width: 10px;
       height: 10px;
@@ -50,6 +53,7 @@
       transform: translate(-50%, -50%);
       transition: transform 0.1s ease;
     }
+
     .cursor-follower {
       width: 36px;
       height: 36px;
@@ -74,4 +78,43 @@
     ::-webkit-scrollbar-thumb {
       background: var(--gold);
       border-radius: 2px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
+      transition: background 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(10, 10, 10, 0.97);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
     }
