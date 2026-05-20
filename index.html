@@ -118,3 +118,49 @@
       gap: 36px;
       list-style: none;
     }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-icons button {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 18px;
+      cursor: none;
+      transition: color 0.3s;
+      position: relative;
+    }
