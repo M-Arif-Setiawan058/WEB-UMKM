@@ -10,6 +10,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="cursor" id="cursor"></div>
   <div class="cursor-follower" id="cursorFollower"></div>
@@ -52,7 +53,7 @@
       <div class="scroll-line"></div>
     </div>
   </section>
-    </section>
+  </section>
   <div class="marquee-section">
     <div class="marquee-track" id="marqueeTrack">
       <div class="marquee-item"><span>Arloji Mewah</span>
@@ -137,5 +138,23 @@
       </div>
     </div>
   </div>
+  <section class="gender-section" id="koleksi">
+    <div class="section-header">
+      <p class="section-eyebrow">Produk Unggulan</p>
+      <h2 class="section-title">Pilihan <em>Terbaik</em> Kami</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="gender-tabs" style="margin-bottom:60px">
+      <button class="gender-tab active" onclick="filterGender('semua', this)">Semua</button>
+      <button class="gender-tab" onclick="filterGender('pria', this)">Pria</button>
+      <button class="gender-tab" onclick="filterGender('wanita', this)">Wanita</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+    </div>
+  </section>
+
 </body>
+
 </html>
