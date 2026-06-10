@@ -289,4 +289,58 @@
     .btn-primary:hover {
       background: var(--gold-light);
       transform: translateY(-2px);
+    }    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── FLOATING ELEMENTS ── */
+    .hero-float {
+      position: absolute;
+      border: 1px solid rgba(201, 169, 110, 0.2);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-float:nth-child(1) {
+      width: 180px;
+      height: 180px;
+      top: 15%;
+      right: 8%;
+      border-radius: 50%;
+      animation-delay: 0s;
+    }
+
+    .hero-float:nth-child(2) {
+      width: 80px;
+      height: 80px;
+      bottom: 25%;
+      left: 6%;
+      animation-delay: -3s;
+    }
+
+    .hero-float:nth-child(3) {
+      width: 120px;
+      height: 1px;
+      top: 40%;
+      left: 4%;
+      animation-delay: -5s;
     }
