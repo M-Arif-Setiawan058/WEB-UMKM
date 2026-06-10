@@ -154,6 +154,47 @@
     <div class="product-grid" id="productGrid">
     </div>
   </section>
+    <div class="gender-tabs" style="margin-bottom:60px">
+      <button class="gender-tab active" onclick="filterGender('semua', this)">Semua</button>
+      <button class="gender-tab" onclick="filterGender('pria', this)">Pria</button>
+      <button class="gender-tab" onclick="filterGender('wanita', this)">Wanita</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+    </div>
+  </section>
+
+  <div style="padding: 0 0 120px;">
+    <div class="featured-banner">
+      <div>
+        <p class="featured-eyebrow">✦ Penawaran Terbatas</p>
+        <h2 class="featured-title">Flash Sale<br><strong>Minggu Ini</strong></h2>
+        <p class="featured-text">Dapatkan diskon eksklusif hingga 40% untuk koleksi pilihan arloji dan tas kulit
+          premium. Penawaran berakhir dalam:</p>
+        <div class="countdown" id="countdown">
+          <div class="countdown-item">
+            <div class="countdown-num" id="cdH">08</div>
+            <div class="countdown-label">Jam</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-num" id="cdM">45</div>
+            <div class="countdown-label">Menit</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-num" id="cdS">30</div>
+            <div class="countdown-label">Detik</div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="showToast('Penawaran disimpan!')">Klaim Diskon ✦</button>
+      </div>
+      <div class="featured-visual">
+        <div class="featured-circle">
+          <div class="featured-emoji">⌚</div>
+        </div>
+        <div class="featured-tag">SALE 40%</div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
