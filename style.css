@@ -492,3 +492,49 @@ position: relative;
 overflow: hidden;
 cursor: none;
 group: true;
+.product-image {
+aspect-ratio: 3/4;
+background: var(--dark3);
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+/* Decorative product placeholder */
+.product-icon {
+font-size: 64px;
+opacity: 0.15;
+transition: transform 0.4s, opacity 0.4s;
+}
+.product-card:hover .product-icon {
+transform: scale(1.1);
+opacity: 0.22;
+}
+.product-overlay {
+position: absolute;
+inset: 0;
+background: rgba(10, 10, 10, 0.7);
+display: flex;
+align-items: center;
+justify-content: center;
+opacity: 0;
+transition: opacity 0.4s;
+}
+.product-card:hover .product-overlay {
+opacity: 1;
+}
+.overlay-btn {
+background: var(--gold);
+color: var(--black);
+border: none;
+padding: 12px 28px;
+font-family: 'Montserrat', sans-serif;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 3px;
+text-transform: uppercase;
+cursor: none;
+transform: translateY(10px);
+transition: transform 0.4s 0.05s;
+}
