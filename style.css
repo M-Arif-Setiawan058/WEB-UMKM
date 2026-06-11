@@ -461,3 +461,34 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .gender-tab {
+flex: 1;
+padding: 14px 36px;
+background: none;
+border: none;
+font-family: 'Montserrat', sans-serif;
+font-size: 10px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--gray);
+cursor: none;
+transition: all 0.3s;
+font-weight: 500;
+}
+.gender-tab.active {
+background: var(--gold);
+color: var(--black);
+font-weight: 600;
+}
+/* ── PRODUCT GRID ── */
+.product-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 2px;
+}
+.product-card {
+background: var(--dark2);
+position: relative;
+overflow: hidden;
+cursor: none;
+group: true;
