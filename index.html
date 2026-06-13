@@ -283,6 +283,47 @@ Anda..." id="emailInput">
 <button class="cart-close" onclick="toggleCart()">✕</button>
 </div>
 <div class="cart-items" id="cartItems">
+  <p style="font-size:13px;color:var(--gray);text-align:center;margintop:60px;font-style:italic;">Keranjang Anda
+kosong</p>
+</div>
+<div class="cart-footer" id="cartFooter" style="display:none">
+<div class="cart-total-row">
+<span class="cart-total-label">Total</span>
+<span class="cart-total-val" id="cartTotal">Rp 0</span>
+</div>
+<button class="checkout-btn">Checkout Sekarang →</button>
+</div>
+</div>
+<div class="toast" id="toast">✦ <span id="toastMsg"></span></div>
+<div class="modal-overlay" id="searchOverlay" onclick="closeSearch()"></div>
+<div class="search-modal" id="searchModal">
+<div class="search-modal-inner">
+<p class="search-label">Apa yang Anda cari?</p>
+<div class="search-input-wrap">
+<span class="search-icon-input">🔍</span>
+<input type="text" class="search-input" id="searchInput"
+placeholder="Cari produk, kategori..."
+oninput="doSearch(this.value)"
+onkeydown="if(event.key==='Escape')closeSearch()">
+<button class="search-clear" id="searchClear" onclick="clearSearch()"
+style="display:none">✕</button>
+</div>
+<div class="search-suggestions" id="searchSuggestions">
+<p class="search-hint">Pencarian populer:</p>
+<div class="search-tags">
+<span class="search-tag" onclick="quickSearch('Arloji')">Arloji</span>
+<span class="search-tag" onclick="quickSearch('Tas')">Tas Kulit</span>
+<span class="search-tag"
+onclick="quickSearch('Perhiasan')">Perhiasan</span>
+<span class="search-tag" onclick="quickSearch('Dompet')">Dompet</span>
+<span class="search-tag" onclick="quickSearch('Gelang')">Gelang</span>
+</div>
+</div>
+<div class="search-results" id="searchResults"></div>
+</div>
+<button class="modal-close-btn" onclick="closeSearch()">✕ Tutup</button>
+</div>
+  
 
 </body>
 
