@@ -1,1 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SehatKu — Portal Kesehatan Indonesia</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/darkmode.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar" id="scrollBar"></div>
+  </div>
+
+  <!-- EMERGENCY STRIP -->
+  <div class="emergency-strip">
+    🚨 Darurat Medis? Hubungi <a href="tel:119">119</a> (IGD Nasional) atau <a href="tel:112">112</a> &middot; Gratis 24
+    Jam
+  </div>
+
+  <!-- STICKY SEARCH -->
+  <div class="sticky-search" id="stickySearch">
+    <div class="container">
+      <span style="font-weight:700;font-size:.9rem;white-space:nowrap">✚ SehatKu</span>
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="stickySearchInput" placeholder="Cari penyakit, gejala, obat..."
+          onkeydown="if(event.key==='Enter'){document.getElementById('heroSearchInput').value=this.value;quickSearch(this.value)}" />
+        <button class="search-btn"
+          onclick="quickSearch(document.getElementById('stickySearchInput').value)">Cari</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOAT CONSULT -->
+  <a href="pages/konsultasi.html" class="float-consult" title="Konsultasi Gratis">
+    <span class="fc-icon">💬</span>
+    <span>Konsultasi AI</span>
+  </a>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">✚</span>
+        <span class="logo-text">Sehat<span class="logo-accent">Ku</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Beranda</a></li>
+        <li><a href="pages/artikel.html" class="nav-link">Artikel</a></li>
+        <li><a href="pages/penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
+        <li><a href="pages/obat.html" class="nav-link">Obat & Suplemen</a></li>
+        <li><a href="pages/kalkulator.html" class="nav-link">Kalkulator</a></li>
+      </ul>
+      <button class="nav-cta" onclick="window.location.href='pages/konsultasi.html'">Konsultasi Gratis</button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🩺 Terpercaya</div>
+      <h1 class="hero-title">
+        Informasi Kesehatan<br />
+        <em>yang Dapat Dipercaya</em>
+      </h1>
+      <p class="hero-subtitle">Temukan gejala, penyakit, obat, dan saran medis dari sumber terpercaya. Didukung oleh
+        dokter spesialis berpengalaman.</p>
+
+      <!-- SEARCH BAR UTAMA -->
+      <div class="search-wrapper" id="mainSearch">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="heroSearchInput" class="search-input"
+            placeholder="Cari gejala, penyakit, obat, atau artikel kesehatan..." autocomplete="off" />
+          <button class="search-btn" id="heroSearchBtn">Cari</button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+        <div class="search-tags">
+          <span class="tag-label">Populer:</span>
+          <button class="search-tag" onclick="quickSearch('diabetes')">Diabetes</button>
+          <button class="search-tag" onclick="quickSearch('hipertensi')">Hipertensi</button>
+          <button class="search-tag" onclick="quickSearch('asam lambung')">Asam Lambung</button>
+          <button class="search-tag" onclick="quickSearch('kolesterol')">Kolesterol</button>
+          <button class="search-tag" onclick="quickSearch('demam berdarah')">DBD</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-card card-pulse">
+        <div class="hcard-icon">❤️</div>
+        <div class="hcard-text">
+          <div class="hcard-val">98<span>bpm</span></div>
+          <div class="hcard-label">Detak Jantung Normal</div>
+        </div>
+      </div>
+      <div class="hero-card card-glucose">
+        <div class="hcard-icon">🩸</div>
+        <div class="hcard-text">
+          <div class="hcard-val">95<span>mg/dL</span></div>
+          <div class="hcard-label">Gula Darah Puasa</div>
+        </div>
+      </div>
+      <div class="hero-illustration">
+        <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="150" r="140" fill="#EAF6F0" />
+          <circle cx="150" cy="120" r="60" fill="#B8E4CC" />
+          <rect x="90" y="175" width="120" height="90" rx="30" fill="#B8E4CC" />
+          <!-- stethoscope simplified -->
+          <circle cx="150" cy="105" r="28" fill="#1a7a4a" />
+          <text x="150" y="115" text-anchor="middle" font-size="28" fill="white">👨‍⚕️</text>
+          <path d="M120 200 Q150 230 180 200" stroke="#1a7a4a" stroke-width="3" fill="none" />
+          <circle cx="150" cy="235" r="10" fill="#1a7a4a" />
+          <path d="M160 235 Q180 235 180 215" stroke="#1a7a4a" stroke-width="3" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HASIL PENCARIAN (hidden by default) ===== -->
+  <section class="search-results-section" id="searchResultsSection" style="display:none">
+    <div class="container">
+      <div class="results-header">
+        <h2>Hasil Pencarian: "<span id="searchQueryDisplay"></span>"</h2>
+        <button class="close-results" onclick="closeSearchResults()">✕ Tutup</button>
+      </div>
+      <div class="results-tabs">
+        <button class="rtab active" data-tab="all">Semua</button>
+        <button class="rtab" data-tab="wiki">Wikipedia</button>
+        <button class="rtab" data-tab="news">Berita Kesehatan</button>
+      </div>
+      <div class="results-loading" id="resultsLoading">
+        <div class="loading-spinner"></div>
+        <p>Mencari informasi dari berbagai sumber...</p>
+      </div>
+      <div class="results-grid" id="resultsGrid"></div>
+      <div class="results-source-note">
+        <span>📰</span> Hasil dikumpulkan dari Wikipedia, berita kesehatan, dan basis data medis terpercaya.
+      </div>
+    </div>
+  </section>
+  <!-- ===== KATEGORI ===== -->
+  <section class="categories section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Jelajahi Topik</div>
+        <h2 class="section-title">Kategori Kesehatan</h2>
+      </div>
+      <div class="categories-grid">
+        <a href="pages/kategori.html?c=jantung" class="cat-card">
+          <div class="cat-icon">❤️</div>
+          <div class="cat-name">Jantung & Pembuluh Darah</div>
+          <div class="cat-count">128 artikel</div>
+        </a>
+        <a href="pages/kategori.html?c=diabetes" class="cat-card">
+          <div class="cat-icon">🩸</div>
+          <div class="cat-name">Diabetes & Metabolisme</div>
+          <div class="cat-count">94 artikel</div>
+        </a>
+        <a href="pages/kategori.html?c=pencernaan" class="cat-card">
+          <div class="cat-icon">🫁</div>
+          <div class="cat-name">Pencernaan</div>
+          <div class="cat-count">76 artikel</div>
+        </a>
+        <a href="pages/kategori.html?c=mental" class="cat-card">
+          <div class="cat-icon">🧠</div>
+          <div class="cat-name">Kesehatan Mental</div>
+          <div class="cat-count">112 artikel</div>
+        </a>
+        <a href="pages/kategori.html?c=anak" class="cat-card">
+          <div class="cat-icon">👶</div>
+          <div class="cat-name">Kesehatan Anak</div>
+          <div class="cat-count">89 artikel</div>
+        </a>
+        <a href="pages/kategori.html?c=kulit" class="cat-card">
+          <div class="cat-icon">🌿</div>
+          <div class="cat-name">Kulit & Kecantikan</div>
+          <div class="cat-count">65 artikel</div>
+        </a>
+        <a href="pages/kategori.html?c=tulang" class="cat-card">
+          <div class="cat-icon">🦴</div>
+          <div class="cat-name">Tulang & Sendi</div>
+          <div class="cat-count">57 artikel</div>
+        </a>
+        <a href="pages/kategori.html?c=gizi" class="cat-card">
+          <div class="cat-icon">🥗</div>
+          <div class="cat-name">Gizi & Diet</div>
+          <div class="cat-count">103 artikel</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARTIKEL TERBARU ===== -->
+  <section class="articles section" id="artikelTerbaru">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Terbaru</div>
+        <h2 class="section-title">Artikel Pilihan</h2>
+        <a href="pages/artikel.html" class="section-link">Lihat Semua →</a>
+      </div>
+      <div class="articles-grid" id="articlesGrid">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FITUR UNGGULAN ===== -->
+  <section class="features section">
+    <div class="container">
+      <div class="features-inner">
+        <div class="features-text">
+          <div class="section-eyebrow">Mengapa SehatKu</div>
+          <h2 class="section-title">Kesehatan Anda,<br />Prioritas Kami</h2>
+          <p class="features-desc">SehatKu menghadirkan informasi medis yang diverifikasi oleh tim dokter spesialis,
+            disajikan dalam bahasa yang mudah dipahami semua kalangan.</p>
+          <ul class="features-list">
+            <li>✅ Direview oleh dokter spesialis bersertifikat</li>
+            <li>✅ Diperbarui secara rutin sesuai perkembangan ilmu medis</li>
+            <li>✅ Bebas iklan produk obat tertentu</li>
+            <li>✅ Konsultasi gratis dengan dokter umum</li>
+          </ul>
+          <a href="pages/tentang.html" class="btn-primary">Tentang Kami</a>
+        </div>
+        <div class="features-cards">
+          <div class="feat-card">
+            <div class="feat-icon">🔬</div>
+            <h3>Berbasis Bukti</h3>
+            <p>Semua artikel didukung oleh penelitian ilmiah dan jurnal medis internasional.</p>
+          </div>
+          <div class="feat-card feat-card--accent">
+            <div class="feat-icon">💬</div>
+            <h3>Konsultasi Langsung</h3>
+            <p>Chat dengan dokter berpengalaman kapan saja, 24 jam sehari.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon">📊</div>
+            <h3>Kalkulator Kesehatan</h3>
+            <p>BMI, kalori, risiko penyakit, dan lebih banyak alat kesehatan interaktif.</p>
+          </div>
+          <div class="feat-card feat-card--accent">
+            <div class="feat-icon">🔔</div>
+            <h3>Pengingat Obat</h3>
+            <p>Atur jadwal minum obat dan vaksinasi langsung dari aplikasi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KALKULATOR BMI ===== -->
+  <section class="bmi-section section">
+    <div class="container">
+      <div class="bmi-card">
+        <div class="bmi-info">
+          <div class="section-eyebrow">Alat Kesehatan</div>
+          <h2>Kalkulator BMI</h2>
+          <p>Hitung Indeks Massa Tubuh Anda untuk mengetahui apakah berat badan Anda sudah ideal.</p>
+        </div>
+        <div class="bmi-form">
+          <div class="bmi-inputs">
+            <div class="bmi-field">
+              <label>Berat Badan</label>
+              <div class="input-unit">
+                <input type="number" id="bmiWeight" placeholder="70" min="1" max="300" />
+                <span>kg</span>
+              </div>
+            </div>
+            <div class="bmi-field">
+              <label>Tinggi Badan</label>
+              <div class="input-unit">
+                <input type="number" id="bmiHeight" placeholder="170" min="1" max="300" />
+                <span>cm</span>
+              </div>
+            </div>
+            <div class="bmi-field">
+              <label>Usia</label>
+              <div class="input-unit">
+                <input type="number" id="bmiAge" placeholder="25" min="1" max="120" />
+                <span>thn</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary bmi-btn" onclick="calculateBMI()">Hitung BMI</button>
+          <div class="bmi-result" id="bmiResult" style="display:none">
+            <div class="bmi-score" id="bmiScore"></div>
+            <div class="bmi-category" id="bmiCategory"></div>
+            <div class="bmi-advice" id="bmiAdvice"></div>
+            <div class="bmi-scale">
+              <div class="bmi-bar">
+                <div class="bmi-indicator" id="bmiIndicator"></div>
+              </div>
+              <div class="bmi-labels">
+                <span>Kurus</span><span>Normal</span><span>Gemuk</span><span>Obesitas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BERITA KESEHATAN LIVE ===== -->
+  <section class="news-section section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Terkini</div>
+        <h2 class="section-title">Berita Kesehatan</h2>
+        <button class="section-link" onclick="loadHealthNews()">🔄 Refresh</button>
+      </div>
+      <div class="news-loading" id="newsLoading">
+        <div class="loading-spinner"></div>
+        <p>Memuat berita terbaru...</p>
+      </div>
+      <div class="news-grid" id="newsGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="newsletter-bar">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-text">
+          <h3>📬 Newsletter Kesehatan SehatKu</h3>
+          <p>Tips kesehatan mingguan, artikel terbaru, dan pengingat vaksinasi langsung ke email Anda.</p>
+        </div>
+        <div class="newsletter-form">
+          <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="email@anda.com" />
+          <button class="newsletter-btn" onclick="subscribeNewsletter()">Langganan Gratis</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-content">
+          <h2>Mulai Perjalanan Hidup Sehat Anda</h2>
+          <p>Daftar gratis dan akses ribuan artikel, serta alat kesehatan interaktif.</p>
+          <div class="cta-btns">
+            <button class="btn-primary" onclick="alert('Fitur pendaftaran akan segera hadir!')">Daftar Gratis</button>
+            <button class="btn-outline" onclick="window.location.href='pages/konsultasi.html'">Konsultasi
+              Sekarang</button>
+          </div>
+        </div>
+        <div class="cta-visual">🏥</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <span class="logo-icon">✚</span>
+            <span class="logo-text">Sehat<span class="logo-accent">Ku</span></span>
+          </div>
+          <p>Portal informasi kesehatan terpercaya untuk masyarakat Indonesia.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn">📘</a>
+            <a href="#" class="social-btn">📷</a>
+            <a href="#" class="social-btn">🐦</a>
+            <a href="#" class="social-btn">▶️</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Informasi</h4>
+          <ul>
+            <li><a href="pages/artikel.html">Artikel Kesehatan</a></li>
+            <li><a href="pages/penyakit.html">Ensiklopedi Penyakit</a></li>
+            <li><a href="pages/obat.html">Database Obat</a></li>
+            <li><a href="pages/dokter.html">Direktori Dokter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Layanan</h4>
+          <ul>
+            <li><a href="pages/konsultasi.html">Konsultasi Dokter</a></li>
+            <li><a href="#">Kalkulator Kesehatan</a></li>
+            <li><a href="#">Pengingat Obat</a></li>
+            <li><a href="#">Vaksinasi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Perusahaan</h4>
+          <ul>
+            <li><a href="pages/tentang.html">Tentang Kami</a></li>
+            <li><a href="#">Tim Dokter</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 SehatKu. Informasi di situs ini tidak menggantikan saran dokter profesional.</p>
+        <p class="footer-disclaimer">⚠️ Selalu konsultasikan kondisi kesehatan Anda dengan tenaga medis.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/news.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/darkmode.js"></script>
+</body>
+
+                                                               </html>
