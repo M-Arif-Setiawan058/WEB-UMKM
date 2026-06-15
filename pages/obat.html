@@ -88,3 +88,53 @@
 
     let currentType = 'semua';
     let currentQ = '';
+    function renderDrugs() {
+      const grid = document.getElementById('drugsGrid');
+      const filtered = DRUGS.filter(d => {
+        const matchType = currentType === 'semua' || d.type === currentType;
+        const matchQ = !currentQ || d.name.toLowerCase().includes(currentQ) || d.generic.toLowerCase().includes(currentQ) || d.cat.toLowerCase().includes(currentQ);
+        return matchType && matchQ;
+      });
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="empty-state"><div class="empty-icon">ðŸ’Š</div><h3>Obat tidak ditemukan</h3><p>Coba nama lain.</p></div>';
+        return;
+      }
+      grid.innerHTML = filtered.map(d => `
+    <div class="drug-card">
+      <div class="drug-img">${d.icon}</div>
+      <div>
+        <div class="drug-name">${d.name}</div>
+        <div class="drug-generic">Zat aktif: ${d.generic}</div>
+        <span class="drug-category ${d.type}">${d.type === 'resep' ? 'ðŸ”´ Obat Resep' : d.type === 'suplemen' ? 'ðŸŸ¢ Suplemen' : 'ðŸŸ¡ Obat Bebas'}</span>
+        <div class="drug-desc">${d.desc}</div>
+        <div style="margin-top:.6rem;font-size:.82rem">
+          <span style="font-weight:700;color:var(--clr-primary)">ðŸ’Š Dosis:</span>
+          <span style="color:var(--clr-muted)"> ${d.dose}</span>
+        </div>
+        <div style="margin-top:.35rem;font-size:.82rem">
+          <span style="font-weight:700;color:#e07020">âš ï¸ Efek Samping:</span>
+          <span style="color:var(--clr-muted)"> ${d.effects}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    function filterByType(t, btn) {
+      currentType = t;
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      renderDrugs();
+    }
+
+    function filterDrugs(q) {
+      currentQ = q.toLowerCase();
+      renderDrugs();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderDrugs);
+  </script>
+  <script src="../js/darkmode.js"></script>
+</body>
+
+</html>
