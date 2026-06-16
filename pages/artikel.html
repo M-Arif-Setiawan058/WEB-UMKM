@@ -39,3 +39,51 @@
       <p>Ribuan artikel kesehatan berbasis bukti yang ditulis dan diverifikasi oleh tim dokter SehatKu.</p>
     </div>
   </section>
+  <section class="section">
+    <div class="container">
+      <div class="sidebar-layout">
+        <div>
+          <div class="filters-bar" id="artFilters">
+            <button class="filter-pill active" onclick="filterArt('semua',this)">Semua</button>
+            <button class="filter-pill" onclick="filterArt('jantung',this)">Jantung</button>
+            <button class="filter-pill" onclick="filterArt('diabetes',this)">Diabetes</button>
+            <button class="filter-pill" onclick="filterArt('mental',this)">Mental</button>
+            <button class="filter-pill" onclick="filterArt('gizi',this)">Gizi</button>
+            <button class="filter-pill" onclick="filterArt('olahraga',this)">Olahraga</button>
+          </div>
+
+          <div id="articleList" style="display:flex;flex-direction:column;gap:1.25rem"></div>
+        </div>
+
+        <aside>
+          <div class="sidebar-card">
+            <h3>ðŸ”¥ Artikel Terpopuler</h3>
+            <ul class="sidebar-list">
+              <li><a href="#">10 Makanan Penurun Kolesterol</a></li>
+              <li><a href="#">Gejala Diabetes yang Sering Diabaikan</a></li>
+              <li><a href="#">Cara Mengatasi Insomnia Alami</a></li>
+              <li><a href="#">Olahraga Terbaik untuk Jantung</a></li>
+              <li><a href="#">Tips Diet Sehat Anti-Lapar</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-card">
+            <h3>ðŸ“‹ Kategori</h3>
+            <ul class="sidebar-list">
+              <li><a href="#">Jantung & Pembuluh Darah (128)</a></li>
+              <li><a href="#">Diabetes & Metabolisme (94)</a></li>
+              <li><a href="#">Kesehatan Mental (112)</a></li>
+              <li><a href="#">Gizi & Diet (103)</a></li>
+              <li><a href="#">Olahraga & Kebugaran (87)</a></li>
+              <li><a href="#">Kesehatan Anak (89)</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-card" style="background:var(--clr-primary-lt);border-color:var(--clr-primary)">
+            <h3>ðŸ’¬ Konsultasi Gratis</h3>
+            <p style="font-size:.86rem;color:var(--clr-muted);margin-bottom:1rem">Punya pertanyaan kesehatan? Chat
+              langsung dengan dokter kami.</p>
+            <a href="konsultasi.html" class="btn-primary" style="display:block;text-align:center">Mulai Konsultasi</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
