@@ -130,3 +130,16 @@
     </div>
   `).join('');
     }
+    function filterArt(cat, btn) {
+      currentCat = cat;
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      renderArticles();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderArticles);
+  </script>
+  <script src="../js/darkmode.js"></script>
+</body>
+
+</html>
