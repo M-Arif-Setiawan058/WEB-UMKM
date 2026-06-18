@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kalkulator Kesehatan â€” SehatKu</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/components.css"/>
+  <link rel="stylesheet" href="../css/darkmode.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    .calc-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .calc-tab {
+      padding: .6rem 1.3rem; border-radius: var(--radius-xl);
+      border: 2px solid var(--clr-border); font-weight: 600; font-size: .9rem;
+      transition: all var(--transition); background: var(--clr-surface);
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .calc-tab.active { background: var(--clr-primary); color: #fff; border-color: var(--clr-primary); }
+    .calc-tab:hover:not(.active) { border-color: var(--clr-primary); color: var(--clr-primary); }
+
+    .calc-panel { display: none; }
+    .calc-panel.active { display: block; }
+
+    .calc-card {
+      background: var(--clr-surface); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md);
+      max-width: 600px;
+    }
+    .calc-card h2 { font-family: var(--ff-display); font-size: 1.6rem; margin-bottom: .5rem; }
+    .calc-card .desc { color: var(--clr-muted); margin-bottom: 1.5rem; font-size: .92rem; }
+
+    .input-row { display: grid; gap: 1rem; margin-bottom: 1.25rem; }
+    .input-row.cols-2 { grid-template-columns: 1fr 1fr; }
+    .input-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .field-group { display: flex; flex-direction: column; gap: .4rem; }
+    .field-group label { font-size: .83rem; font-weight: 600; color: var(--clr-muted); }
+    .field-input {
+      display: flex; align-items: center;
+      border: 2px solid var(--clr-border); border-radius: var(--radius-sm);
+      overflow: hidden; transition: border-color var(--transition);
+    }
+    .field-input:focus-within { border-color: var(--clr-primary); }
+    .field-input input, .field-input select {
+      flex: 1; padding: .65rem .85rem; border: none; outline: none;
+      font-size: .95rem; font-family: var(--ff-body); background: transparent; min-width: 0;
+    }
+    .field-input .unit {
+      background: var(--clr-bg); padding: .65rem .8rem;
+      font-size: .8rem; color: var(--clr-muted); font-weight: 600;
+      border-left: 1px solid var(--clr-border); white-space: nowrap;
+    }
+
+    .calc-btn {
+      width: 100%; padding: .9rem; background: var(--clr-primary); color: #fff;
+      border-radius: var(--radius-xl); font-weight: 700; font-size: 1rem;
+      transition: background var(--transition); margin-bottom: 1rem;
+    }
+    .calc-btn:hover { background: var(--clr-primary-dk); }
+
+    .result-box {
+      background: var(--clr-primary-lt); border: 1.5px solid var(--clr-primary);
+      border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;
+      display: none;
+    }
+    .result-box.show { display: block; }
+    .result-main { font-size: 2.5rem; font-weight: 800; font-family: var(--ff-display); color: var(--clr-primary); }
+    .result-label { font-size: .85rem; color: var(--clr-muted); margin-top: .15rem; margin-bottom: .75rem; }
+    .result-detail { font-size: .88rem; color: var(--clr-text); line-height: 1.6; }
+    .result-items { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: .75rem; }
+    .result-item {
+      background: var(--clr-surface); border-radius: var(--radius-sm);
+      padding: .7rem .9rem; border: 1px solid var(--clr-border);
+    }
+    .result-item .ri-label { font-size: .74rem; color: var(--clr-muted); margin-bottom: .15rem; }
+    .result-item .ri-val { font-weight: 700; font-size: 1rem; color: var(--clr-text); }
+
+    .sidebar-tips { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+
+    @media(max-width:768px){
+      .input-row.cols-3 { grid-template-columns: 1fr 1fr; }
+      .result-items { grid-template-columns: 1fr; }
+    }
+    @media(max-width:480px){
+      .input-row.cols-2, .input-row.cols-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="nav-logo"><span class="logo-icon">âœš</span><span class="logo-text">Sehat<span class="logo-accent">Ku</span></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html" class="nav-link">Beranda</a></li>
+      <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+      <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
+      <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
+      <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
+    </ul>
+    <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">ðŸŒ™</button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
