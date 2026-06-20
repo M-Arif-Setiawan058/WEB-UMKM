@@ -309,3 +309,65 @@
               </div>
             </div>
           </div>
+          <!-- KALORI -->
+          <div class="calc-panel" id="panel-kalori">
+            <div class="calc-card">
+              <h2>ðŸ”¥ Kebutuhan Kalori Harian</h2>
+              <p class="desc">Hitung kebutuhan kalori harian Anda berdasarkan rumus Mifflin-St Jeor yang diakui secara
+                ilmiah.</p>
+              <div class="input-row cols-2">
+                <div class="field-group">
+                  <label>Berat Badan</label>
+                  <div class="field-input"><input type="number" id="k_weight" placeholder="70" /><span
+                      class="unit">kg</span></div>
+                </div>
+                <div class="field-group">
+                  <label>Tinggi Badan</label>
+                  <div class="field-input"><input type="number" id="k_height" placeholder="170" /><span
+                      class="unit">cm</span></div>
+                </div>
+                <div class="field-group">
+                  <label>Usia</label>
+                  <div class="field-input"><input type="number" id="k_age" placeholder="25" /><span
+                      class="unit">tahun</span></div>
+                </div>
+                <div class="field-group">
+                  <label>Jenis Kelamin</label>
+                  <div class="field-input"><select id="k_gender">
+                      <option value="m">Laki-laki</option>
+                      <option value="f">Perempuan</option>
+                    </select></div>
+                </div>
+              </div>
+              <div class="field-group" style="margin-bottom:1.25rem">
+                <label>Tingkat Aktivitas</label>
+                <div class="field-input">
+                  <select id="k_activity">
+                    <option value="1.2">Sangat Jarang (Tidak berolahraga)</option>
+                    <option value="1.375">Ringan (Olahraga 1-3x/minggu)</option>
+                    <option value="1.55" selected>Sedang (Olahraga 3-5x/minggu)</option>
+                    <option value="1.725">Aktif (Olahraga 6-7x/minggu)</option>
+                    <option value="1.9">Sangat Aktif (Olahraga berat 2x/hari)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field-group" style="margin-bottom:1.25rem">
+                <label>Tujuan</label>
+                <div class="field-input">
+                  <select id="k_goal">
+                    <option value="maintain">Pertahankan Berat Badan</option>
+                    <option value="lose_slow">Turun Berat Badan Perlahan (âˆ’0.25 kg/minggu)</option>
+                    <option value="lose">Turun Berat Badan (âˆ’0.5 kg/minggu)</option>
+                    <option value="lose_fast">Turun Berat Badan Cepat (âˆ’1 kg/minggu)</option>
+                    <option value="gain">Naik Berat Badan (+0.5 kg/minggu)</option>
+                  </select>
+                </div>
+              </div>
+              <button class="calc-btn" onclick="calcKalori()">Hitung Kalori</button>
+              <div class="result-box" id="res-kalori">
+                <div class="result-main" id="rk-score"></div>
+                <div class="result-label">Kalori per hari yang disarankan</div>
+                <div class="result-items" id="rk-items"></div>
+              </div>
+            </div>
+          </div>
