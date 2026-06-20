@@ -1,8 +1,3 @@
-/* ============================================================
-   SehatKu — main.js
-   Core: Navbar, hamburger, counter animation, back-to-top
-   ============================================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- NAVBAR SCROLL ---- */
@@ -20,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true });
 
   /* ---- HAMBURGER ---- */
-  const ham  = document.getElementById('hamburger');
+  const ham = document.getElementById('hamburger');
   const navL = document.getElementById('navLinks');
   if (ham && navL) {
     ham.addEventListener('click', () => navL.classList.toggle('open'));
@@ -44,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.stat-number');
   if (counters.length) {
     const formatNumber = (n) => {
-      if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace('.0','') + 'Jt';
+      if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace('.0', '') + 'Jt';
       if (n >= 1_000) return (n / 1_000).toFixed(0) + 'K';
       return n.toString();
     };

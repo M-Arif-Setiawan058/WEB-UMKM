@@ -1,105 +1,102 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Database Obat & Suplemen â€” SehatKu</title>
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../css/main.css" />
-  <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/darkmode.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap"
-    rel="stylesheet" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/components.css"/>
+  <link rel="stylesheet" href="../css/darkmode.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet"/>
 </head>
-
 <body>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="../index.html" class="nav-logo"><span class="logo-icon">âœš</span><span class="logo-text">Sehat<span
-            class="logo-accent">Ku</span></span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="../index.html" class="nav-link">Beranda</a></li>
-        <li><a href="artikel.html" class="nav-link">Artikel</a></li>
-        <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
-        <li><a href="obat.html" class="nav-link active">Obat & Suplemen</a></li>
-        <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
-      </ul>
-      <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">ðŸŒ™</button>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="nav-logo"><span class="logo-icon">âœš</span><span class="logo-text">Sehat<span class="logo-accent">Ku</span></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html" class="nav-link">Beranda</a></li>
+      <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+      <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
+      <li><a href="obat.html" class="nav-link active">Obat & Suplemen</a></li>
+      <li><a href="dokter.html" class="nav-link">Cari Dokter</a></li>
+      <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
+    </ul>
+    <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">ðŸŒ™</button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-eyebrow">Referensi Farmasi</div>
+    <h1>Database Obat & Suplemen</h1>
+    <p>Informasi lengkap tentang obat, dosis, efek samping, dan interaksi obat yang perlu Anda ketahui.</p>
+    <div class="alert alert-warning" style="max-width:600px;margin:1.5rem auto 0;text-align:left">
+      âš ï¸ <strong>Peringatan:</strong> Selalu konsultasikan dengan dokter atau apoteker sebelum mengonsumsi obat. Jangan sembarangan mengganti atau menghentikan pengobatan.
     </div>
-  </nav>
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-eyebrow">Referensi Farmasi</div>
-      <h1>Database Obat & Suplemen</h1>
-      <p>Informasi lengkap tentang obat, dosis, efek samping, dan interaksi obat yang perlu Anda ketahui.</p>
-      <div class="alert alert-warning" style="max-width:600px;margin:1.5rem auto 0;text-align:left">
-        âš ï¸ <strong>Peringatan:</strong> Selalu konsultasikan dengan dokter atau apoteker sebelum mengonsumsi obat.
-        Jangan sembarangan mengganti atau menghentikan pengobatan.
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center">
+      <div class="search-bar" style="flex:1;min-width:250px">
+        <span class="search-icon">ðŸ”</span>
+        <input type="text" class="search-input" placeholder="Cari nama obat atau zat aktif..." oninput="filterDrugs(this.value)"/>
+      </div>
+      <div class="filters-bar" style="margin:0">
+        <button class="filter-pill active" onclick="filterByType('semua',this)">Semua</button>
+        <button class="filter-pill" onclick="filterByType('bebas',this)">Obat Bebas</button>
+        <button class="filter-pill" onclick="filterByType('resep',this)">Obat Resep</button>
+        <button class="filter-pill" onclick="filterByType('suplemen',this)">Suplemen</button>
       </div>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center">
-        <div class="search-bar" style="flex:1;min-width:250px">
-          <span class="search-icon">ðŸ”</span>
-          <input type="text" class="search-input" placeholder="Cari nama obat atau zat aktif..."
-            oninput="filterDrugs(this.value)" />
-        </div>
-        <div class="filters-bar" style="margin:0">
-          <button class="filter-pill active" onclick="filterByType('semua',this)">Semua</button>
-          <button class="filter-pill" onclick="filterByType('bebas',this)">Obat Bebas</button>
-          <button class="filter-pill" onclick="filterByType('resep',this)">Obat Resep</button>
-          <button class="filter-pill" onclick="filterByType('suplemen',this)">Suplemen</button>
-        </div>
-      </div>
+    <div id="drugsGrid" style="display:flex;flex-direction:column;gap:1rem"></div>
+  </div>
+</section>
 
-      <div id="drugsGrid" style="display:flex;flex-direction:column;gap:1rem"></div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>Â© 2025 SehatKu. Selalu konsultasikan dengan tenaga medis profesional.</p>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p>Â© 2025 SehatKu. Selalu konsultasikan dengan tenaga medis profesional.</p>
-      </div>
-    </div>
-  </footer>
-  <script src="../js/main.js"></script>
-  <script>
-    const DRUGS = [
-      { name: 'Paracetamol', generic: 'Acetaminophen', type: 'bebas', icon: 'ðŸ’Š', cat: 'Analgesik & Antipiretik', desc: 'Meredakan nyeri ringan-sedang dan menurunkan demam. Aman untuk hampir semua usia jika digunakan sesuai dosis.', dose: 'Dewasa: 500-1000mg setiap 4-6 jam, maks 4g/hari.', effects: 'Jarang: mual, ruam kulit. Overdosis dapat merusak hati.' },
-      { name: 'Ibuprofen', generic: 'Ibuprofen', type: 'bebas', icon: 'ðŸ’Š', cat: 'NSAID Anti-inflamasi', desc: 'Anti-nyeri, antiradang, dan antipiretik. Efektif untuk nyeri menstruasi, sakit kepala, dan nyeri sendi.', dose: 'Dewasa: 200-400mg setiap 4-6 jam, maks 1200mg/hari tanpa resep.', effects: 'Iritasi lambung, hindari jika memiliki maag atau gangguan ginjal.' },
-      { name: 'Amoxicillin', generic: 'Amoxicillin Trihydrate', type: 'resep', icon: 'ðŸ’Š', cat: 'Antibiotik Penisilin', desc: 'Antibiotik spektrum luas untuk infeksi bakteri saluran napas atas, saluran kemih, dan kulit.', dose: 'Dewasa: 250-500mg setiap 8 jam atau 500-875mg setiap 12 jam.', effects: 'Diare, mual, ruam. Reaksi alergi pada penderita alergi penisilin.' },
-      { name: 'Metformin', generic: 'Metformin HCl', type: 'resep', icon: 'ðŸ’Š', cat: 'Antidiabetes Oral', desc: 'Obat lini pertama untuk diabetes tipe 2. Menurunkan produksi glukosa hati dan meningkatkan sensitivitas insulin.', dose: 'Awal: 500mg 2x/hari. Pemeliharaan: 1500-2550mg/hari terbagi.', effects: 'Mual, diare, sakit perut (berkurang seiring waktu). Hindari jika gagal ginjal berat.' },
-      { name: 'Amlodipine', generic: 'Amlodipine Besilate', type: 'resep', icon: 'ðŸ’Š', cat: 'Antihipertensi (CCB)', desc: 'Calcium channel blocker untuk mengobati hipertensi dan angina (nyeri dada). Melebarkan pembuluh darah.', dose: '5-10mg sekali sehari. Mulai dengan dosis rendah pada lansia.', effects: 'Pembengkakan kaki, pusing, nyeri kepala, kemerahan wajah.' },
-      { name: 'Omeprazole', generic: 'Omeprazole', type: 'resep', icon: 'ðŸ’Š', cat: 'PPI (Pompa Proton)', desc: 'Mengurangi produksi asam lambung. Digunakan untuk GERD, tukak lambung, dan sindrom Zollinger-Ellison.', dose: '20-40mg sekali sehari, diminum 30-60 menit sebelum makan.', effects: 'Sakit kepala, diare, mual. Penggunaan jangka panjang: risiko defisiensi magnesium.' },
-      { name: 'Vitamin C', generic: 'Ascorbic Acid', type: 'suplemen', icon: 'ðŸŠ', cat: 'Vitamin & Suplemen', desc: 'Antioksidan penting untuk sistem imun, produksi kolagen, dan penyerapan zat besi.', dose: 'Dewasa: 500-1000mg/hari. Dosis terapeutik hingga 2000mg/hari.', effects: 'Dosis tinggi: mual, diare, batu ginjal pada orang yang rentan.' },
-      { name: 'Vitamin D3', generic: 'Cholecalciferol', type: 'suplemen', icon: 'â˜€ï¸', cat: 'Vitamin & Suplemen', desc: 'Penting untuk kesehatan tulang, sistem imun, dan fungsi otot. Banyak orang Indonesia kekurangan vitamin ini.', dose: '1000-4000 IU/hari untuk pemeliharaan. Defisiensi bisa butuh dosis lebih tinggi.', effects: 'Umumnya aman. Overdosis (jarang): mual, kelemahan, hiperkalsemia.' },
-      { name: 'Cetirizine', generic: 'Cetirizine HCl', type: 'bebas', icon: 'ðŸ’Š', cat: 'Antihistamin', desc: 'Antihistamin generasi kedua untuk alergi. Tidak menyebabkan kantuk signifikan seperti generasi pertama.', dose: '10mg sekali sehari (malam hari). Anak >6thn: 5mg/hari.', effects: 'Mengantuk ringan, mulut kering, sakit kepala pada sebagian orang.' },
-      { name: 'Simvastatin', generic: 'Simvastatin', type: 'resep', icon: 'ðŸ’Š', cat: 'Statin (Kolesterol)', desc: 'Menurunkan kolesterol LDL dan trigliserida, meningkatkan HDL. Mengurangi risiko serangan jantung dan stroke.', dose: '5-40mg sekali sehari (malam hari). Maks 40mg/hari.', effects: 'Nyeri otot (miopati). Pantau enzim hati secara berkala. Hindari alkohol.' },
-    ];
+<script src="../js/main.js"></script>
+<script>
+const DRUGS = [
+  { name:'Paracetamol', generic:'Acetaminophen', type:'bebas', icon:'ðŸ’Š', cat:'Analgesik & Antipiretik', desc:'Meredakan nyeri ringan-sedang dan menurunkan demam. Aman untuk hampir semua usia jika digunakan sesuai dosis.', dose:'Dewasa: 500-1000mg setiap 4-6 jam, maks 4g/hari.', effects:'Jarang: mual, ruam kulit. Overdosis dapat merusak hati.' },
+  { name:'Ibuprofen', generic:'Ibuprofen', type:'bebas', icon:'ðŸ’Š', cat:'NSAID Anti-inflamasi', desc:'Anti-nyeri, antiradang, dan antipiretik. Efektif untuk nyeri menstruasi, sakit kepala, dan nyeri sendi.', dose:'Dewasa: 200-400mg setiap 4-6 jam, maks 1200mg/hari tanpa resep.', effects:'Iritasi lambung, hindari jika memiliki maag atau gangguan ginjal.' },
+  { name:'Amoxicillin', generic:'Amoxicillin Trihydrate', type:'resep', icon:'ðŸ’Š', cat:'Antibiotik Penisilin', desc:'Antibiotik spektrum luas untuk infeksi bakteri saluran napas atas, saluran kemih, dan kulit.', dose:'Dewasa: 250-500mg setiap 8 jam atau 500-875mg setiap 12 jam.', effects:'Diare, mual, ruam. Reaksi alergi pada penderita alergi penisilin.' },
+  { name:'Metformin', generic:'Metformin HCl', type:'resep', icon:'ðŸ’Š', cat:'Antidiabetes Oral', desc:'Obat lini pertama untuk diabetes tipe 2. Menurunkan produksi glukosa hati dan meningkatkan sensitivitas insulin.', dose:'Awal: 500mg 2x/hari. Pemeliharaan: 1500-2550mg/hari terbagi.', effects:'Mual, diare, sakit perut (berkurang seiring waktu). Hindari jika gagal ginjal berat.' },
+  { name:'Amlodipine', generic:'Amlodipine Besilate', type:'resep', icon:'ðŸ’Š', cat:'Antihipertensi (CCB)', desc:'Calcium channel blocker untuk mengobati hipertensi dan angina (nyeri dada). Melebarkan pembuluh darah.', dose:'5-10mg sekali sehari. Mulai dengan dosis rendah pada lansia.', effects:'Pembengkakan kaki, pusing, nyeri kepala, kemerahan wajah.' },
+  { name:'Omeprazole', generic:'Omeprazole', type:'resep', icon:'ðŸ’Š', cat:'PPI (Pompa Proton)', desc:'Mengurangi produksi asam lambung. Digunakan untuk GERD, tukak lambung, dan sindrom Zollinger-Ellison.', dose:'20-40mg sekali sehari, diminum 30-60 menit sebelum makan.', effects:'Sakit kepala, diare, mual. Penggunaan jangka panjang: risiko defisiensi magnesium.' },
+  { name:'Vitamin C', generic:'Ascorbic Acid', type:'suplemen', icon:'ðŸŠ', cat:'Vitamin & Suplemen', desc:'Antioksidan penting untuk sistem imun, produksi kolagen, dan penyerapan zat besi.', dose:'Dewasa: 500-1000mg/hari. Dosis terapeutik hingga 2000mg/hari.', effects:'Dosis tinggi: mual, diare, batu ginjal pada orang yang rentan.' },
+  { name:'Vitamin D3', generic:'Cholecalciferol', type:'suplemen', icon:'â˜€ï¸', cat:'Vitamin & Suplemen', desc:'Penting untuk kesehatan tulang, sistem imun, dan fungsi otot. Banyak orang Indonesia kekurangan vitamin ini.', dose:'1000-4000 IU/hari untuk pemeliharaan. Defisiensi bisa butuh dosis lebih tinggi.', effects:'Umumnya aman. Overdosis (jarang): mual, kelemahan, hiperkalsemia.' },
+  { name:'Cetirizine', generic:'Cetirizine HCl', type:'bebas', icon:'ðŸ’Š', cat:'Antihistamin', desc:'Antihistamin generasi kedua untuk alergi. Tidak menyebabkan kantuk signifikan seperti generasi pertama.', dose:'10mg sekali sehari (malam hari). Anak >6thn: 5mg/hari.', effects:'Mengantuk ringan, mulut kering, sakit kepala pada sebagian orang.' },
+  { name:'Simvastatin', generic:'Simvastatin', type:'resep', icon:'ðŸ’Š', cat:'Statin (Kolesterol)', desc:'Menurunkan kolesterol LDL dan trigliserida, meningkatkan HDL. Mengurangi risiko serangan jantung dan stroke.', dose:'5-40mg sekali sehari (malam hari). Maks 40mg/hari.', effects:'Nyeri otot (miopati). Pantau enzim hati secara berkala. Hindari alkohol.' },
+];
 
-    let currentType = 'semua';
-    let currentQ = '';
-    function renderDrugs() {
-      const grid = document.getElementById('drugsGrid');
-      const filtered = DRUGS.filter(d => {
-        const matchType = currentType === 'semua' || d.type === currentType;
-        const matchQ = !currentQ || d.name.toLowerCase().includes(currentQ) || d.generic.toLowerCase().includes(currentQ) || d.cat.toLowerCase().includes(currentQ);
-        return matchType && matchQ;
-      });
-      if (!filtered.length) {
-        grid.innerHTML = '<div class="empty-state"><div class="empty-icon">ðŸ’Š</div><h3>Obat tidak ditemukan</h3><p>Coba nama lain.</p></div>';
-        return;
-      }
-      grid.innerHTML = filtered.map(d => `
+let currentType = 'semua';
+let currentQ = '';
+
+function renderDrugs() {
+  const grid = document.getElementById('drugsGrid');
+  const filtered = DRUGS.filter(d => {
+    const matchType = currentType === 'semua' || d.type === currentType;
+    const matchQ = !currentQ || d.name.toLowerCase().includes(currentQ) || d.generic.toLowerCase().includes(currentQ) || d.cat.toLowerCase().includes(currentQ);
+    return matchType && matchQ;
+  });
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">ðŸ’Š</div><h3>Obat tidak ditemukan</h3><p>Coba nama lain.</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(d => `
     <div class="drug-card">
       <div class="drug-img">${d.icon}</div>
       <div>
@@ -118,23 +115,22 @@
       </div>
     </div>
   `).join('');
-    }
+}
 
-    function filterByType(t, btn) {
-      currentType = t;
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      renderDrugs();
-    }
+function filterByType(t, btn) {
+  currentType = t;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderDrugs();
+}
 
-    function filterDrugs(q) {
-      currentQ = q.toLowerCase();
-      renderDrugs();
-    }
+function filterDrugs(q) {
+  currentQ = q.toLowerCase();
+  renderDrugs();
+}
 
-    document.addEventListener('DOMContentLoaded', renderDrugs);
-  </script>
-  <script src="../js/darkmode.js"></script>
+document.addEventListener('DOMContentLoaded', renderDrugs);
+</script>
+<script src="../js/darkmode.js"></script>
 </body>
-
 </html>

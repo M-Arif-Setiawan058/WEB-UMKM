@@ -1,13 +1,6 @@
-/* ============================================================
-   SehatKu — darkmode.js
-   Dark mode toggle, scroll progress, sticky search,
-   newsletter subscription
-   ============================================================ */
-
-/* ---- DARK MODE ---- */
 function toggleTheme() {
   const html = document.documentElement;
-  const btn  = document.getElementById('themeToggle');
+  const btn = document.getElementById('themeToggle');
   const isDark = html.getAttribute('data-theme') === 'dark';
   html.setAttribute('data-theme', isDark ? 'light' : 'dark');
   if (btn) btn.textContent = isDark ? '🌙' : '☀️';
@@ -25,12 +18,12 @@ function applyStoredTheme() {
 
 /* ---- SCROLL PROGRESS ---- */
 function updateScrollProgress() {
-  const bar  = document.getElementById('scrollBar');
+  const bar = document.getElementById('scrollBar');
   const sticky = document.getElementById('stickySearch');
   if (!bar) return;
   const scrollTop = window.scrollY;
   const docH = document.documentElement.scrollHeight - window.innerHeight;
-  const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+  const pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
   bar.style.width = pct + '%';
 
   // Show sticky search after hero passes
@@ -69,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sync sticky search with hero input
   const stickyInput = document.getElementById('stickySearchInput');
-  const heroInput   = document.getElementById('heroSearchInput');
+  const heroInput = document.getElementById('heroSearchInput');
   if (stickyInput && heroInput) {
     heroInput.addEventListener('input', () => { stickyInput.value = heroInput.value; });
     stickyInput.addEventListener('input', () => { heroInput.value = stickyInput.value; });

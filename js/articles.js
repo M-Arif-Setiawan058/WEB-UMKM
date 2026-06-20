@@ -1,8 +1,3 @@
-/* ============================================================
-   SehatKu — articles.js
-   Load and render featured articles
-   ============================================================ */
-
 const ARTICLES = [
   {
     emoji: '❤️', tag: 'Jantung', date: '10 Jun 2025', readTime: '5 menit',

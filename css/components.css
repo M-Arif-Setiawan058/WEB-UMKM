@@ -1,9 +1,3 @@
-/* ============================================================
-   SehatKu — components.css
-   Reusable page components & inner page styles
-   ============================================================ */
-
-/* ---- PAGE HERO (inner pages) ---- */
 .page-hero {
   background: linear-gradient(135deg, var(--clr-primary-lt), #d8f0e4);
   padding: calc(var(--nav-h) + 3rem) 0 3rem;

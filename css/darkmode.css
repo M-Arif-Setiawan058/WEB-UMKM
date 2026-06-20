@@ -1,9 +1,3 @@
-/* ============================================================
-   SehatKu — darkmode.css
-   Dark Mode & Additional Visual Polish
-   ============================================================ */
-
-/* ---- DARK MODE ---- */
 [data-theme="dark"] {
   --clr-primary:     #4ade95;
   --clr-primary-dk:  #2ab870;
