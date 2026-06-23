@@ -1,121 +1,120 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artikel Kesehatan â€” SehatKu</title>
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../css/main.css" />
-  <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/darkmode.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap"
-    rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artikel Kesehatan — SehatKu</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/components.css"/>
+  <link rel="stylesheet" href="../css/darkmode.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet"/>
 </head>
-
 <body>
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="../index.html" class="nav-logo"><span class="logo-icon">âœš</span><span class="logo-text">Sehat<span
-            class="logo-accent">Ku</span></span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="../index.html" class="nav-link">Beranda</a></li>
-        <li><a href="artikel.html" class="nav-link active">Artikel</a></li>
-        <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
-        <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
-        <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
-      </ul>
-      <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">ðŸŒ™</button>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
 
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-eyebrow">Edukasi Kesehatan</div>
-      <h1>Artikel Kesehatan</h1>
-      <p>Ribuan artikel kesehatan berbasis bukti yang ditulis dan diverifikasi oleh tim dokter SehatKu.</p>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="sidebar-layout">
-        <div>
-          <div class="filters-bar" id="artFilters">
-            <button class="filter-pill active" onclick="filterArt('semua',this)">Semua</button>
-            <button class="filter-pill" onclick="filterArt('jantung',this)">Jantung</button>
-            <button class="filter-pill" onclick="filterArt('diabetes',this)">Diabetes</button>
-            <button class="filter-pill" onclick="filterArt('mental',this)">Mental</button>
-            <button class="filter-pill" onclick="filterArt('gizi',this)">Gizi</button>
-            <button class="filter-pill" onclick="filterArt('olahraga',this)">Olahraga</button>
-          </div>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="nav-logo"><span class="logo-icon">✚</span><span class="logo-text">Sehat<span class="logo-accent">Ku</span></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html" class="nav-link">Beranda</a></li>
+      <li><a href="artikel.html" class="nav-link active">Artikel</a></li>
+      <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
+      <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
+      <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
+    </ul>
+    <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">🌙</button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-          <div id="articleList" style="display:flex;flex-direction:column;gap:1.25rem"></div>
+<section class="page-hero">
+  <div class="container">
+    <div class="section-eyebrow">Edukasi Kesehatan</div>
+    <h1>Artikel Kesehatan</h1>
+    <p>Ribuan artikel kesehatan berbasis bukti yang ditulis dan diverifikasi oleh tim dokter SehatKu.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="sidebar-layout">
+      <div>
+        <div class="filters-bar" id="artFilters">
+          <button class="filter-pill active" onclick="filterArt('semua',this)">Semua</button>
+          <button class="filter-pill" onclick="filterArt('jantung',this)">Jantung</button>
+          <button class="filter-pill" onclick="filterArt('diabetes',this)">Diabetes</button>
+          <button class="filter-pill" onclick="filterArt('mental',this)">Mental</button>
+          <button class="filter-pill" onclick="filterArt('gizi',this)">Gizi</button>
+          <button class="filter-pill" onclick="filterArt('olahraga',this)">Olahraga</button>
         </div>
 
-        <aside>
-          <div class="sidebar-card">
-            <h3>ðŸ”¥ Artikel Terpopuler</h3>
-            <ul class="sidebar-list">
-              <li><a href="#">10 Makanan Penurun Kolesterol</a></li>
-              <li><a href="#">Gejala Diabetes yang Sering Diabaikan</a></li>
-              <li><a href="#">Cara Mengatasi Insomnia Alami</a></li>
-              <li><a href="#">Olahraga Terbaik untuk Jantung</a></li>
-              <li><a href="#">Tips Diet Sehat Anti-Lapar</a></li>
-            </ul>
-          </div>
-          <div class="sidebar-card">
-            <h3>ðŸ“‹ Kategori</h3>
-            <ul class="sidebar-list">
-              <li><a href="#">Jantung & Pembuluh Darah (128)</a></li>
-              <li><a href="#">Diabetes & Metabolisme (94)</a></li>
-              <li><a href="#">Kesehatan Mental (112)</a></li>
-              <li><a href="#">Gizi & Diet (103)</a></li>
-              <li><a href="#">Olahraga & Kebugaran (87)</a></li>
-              <li><a href="#">Kesehatan Anak (89)</a></li>
-            </ul>
-          </div>
-          <div class="sidebar-card" style="background:var(--clr-primary-lt);border-color:var(--clr-primary)">
-            <h3>ðŸ’¬ Konsultasi Gratis</h3>
-            <p style="font-size:.86rem;color:var(--clr-muted);margin-bottom:1rem">Punya pertanyaan kesehatan? Chat
-              langsung dengan dokter kami.</p>
-            <a href="konsultasi.html" class="btn-primary" style="display:block;text-align:center">Mulai Konsultasi</a>
-          </div>
-        </aside>
+        <div id="articleList" style="display:flex;flex-direction:column;gap:1.25rem"></div>
       </div>
-    </div>
-  </section>
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p>Â© 2026 | SehatKu. Informasi di situs ini tidak menggantikan saran dokter profesional.</p>
-      </div>
-    </div>
-  </footer>
-  <script src="../js/main.js"></script>
-  <script>
-    const ARTICLES_DATA = [
-      { cat: 'jantung', emoji: 'â¤ï¸', tag: 'Jantung', date: '10 Jun 2025', time: '5 menit', title: '7 Cara Menjaga Kesehatan Jantung di Usia 30-an', excerpt: 'Penyakit jantung kini mengintai di usia yang lebih muda. Temukan strategi pencegahan yang terbukti secara ilmiah dari para kardiolog terkemuka.' },
-      { cat: 'diabetes', emoji: 'ðŸ©¸', tag: 'Diabetes', date: '8 Jun 2025', time: '7 menit', title: 'Panduan Lengkap Pola Makan Penderita Diabetes Tipe 2', excerpt: 'Diet yang tepat adalah fondasi manajemen diabetes. Pelajari makanan yang boleh dan tidak boleh dikonsumsi, beserta contoh menu sehari.' },
-      { cat: 'mental', emoji: 'ðŸ§ ', tag: 'Mental Health', date: '6 Jun 2025', time: '4 menit', title: 'Mengenali Tanda-tanda Burnout dan Cara Mengatasinya', excerpt: 'Burnout bukan sekadar kelelahan biasa. Kenali 10 gejala burnout sejak dini dan ambil langkah pemulihan yang tepat.' },
-      { cat: 'gizi', emoji: 'ðŸ¥—', tag: 'Gizi', date: '4 Jun 2025', time: '6 menit', title: 'Superfood Lokal Indonesia yang Menyehatkan', excerpt: 'Tempe, daun kelor, dan kunyit adalah beberapa superfood lokal dengan manfaat luar biasa. Kaya nutrisi dan mudah didapat.' },
-      { cat: 'olahraga', emoji: 'ðŸƒ', tag: 'Olahraga', date: '2 Jun 2025', time: '5 menit', title: 'Olahraga 30 Menit Sehari: Manfaat yang Mengejutkan', excerpt: 'Hanya 30 menit olahraga sedang per hari sudah cukup untuk menurunkan risiko berbagai penyakit kronis, termasuk jantung dan diabetes.' },
-      { cat: 'mental', emoji: 'ðŸ˜´', tag: 'Tidur', date: '30 Mei 2025', time: '4 menit', title: 'Mengapa Tidur 7-8 Jam Sangat Penting untuk Kesehatan', excerpt: 'Kurang tidur berkaitan erat dengan obesitas, diabetes, gangguan imun, dan penyakit jantung. Pelajari cara memperbaiki kualitas tidur.' },
-      { cat: 'jantung', emoji: 'ðŸ©º', tag: 'Jantung', date: '28 Mei 2025', time: '8 menit', title: 'Mengenal Perbedaan Serangan Jantung dan Henti Jantung', excerpt: 'Banyak orang mengira keduanya sama. Perbedaan ini bisa menentukan cara pertolongan pertama yang harus diberikan.' },
-      { cat: 'gizi', emoji: 'ðŸ’§', tag: 'Hidrasi', date: '25 Mei 2025', time: '3 menit', title: 'Berapa Banyak Air yang Harus Diminum Setiap Hari?', excerpt: 'Formula 8 gelas sehari tidak berlaku untuk semua orang. Kebutuhan cairan dipengaruhi berat badan, iklim, dan aktivitas fisik.' },
-    ];
 
-    let currentCat = 'semua';
-    function renderArticles() {
-      const list = document.getElementById('articleList');
-      const filtered = ARTICLES_DATA.filter(a => currentCat === 'semua' || a.cat === currentCat);
-      if (!filtered.length) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-icon">ðŸ“„</div><h3>Belum ada artikel</h3><p>Kategori ini sedang dalam pengembangan.</p></div>';
-        return;
-      }
-      list.innerHTML = filtered.map(a => `
+      <aside>
+        <div class="sidebar-card">
+          <h3>🔥 Artikel Terpopuler</h3>
+          <ul class="sidebar-list">
+            <li><a href="#">10 Makanan Penurun Kolesterol</a></li>
+            <li><a href="#">Gejala Diabetes yang Sering Diabaikan</a></li>
+            <li><a href="#">Cara Mengatasi Insomnia Alami</a></li>
+            <li><a href="#">Olahraga Terbaik untuk Jantung</a></li>
+            <li><a href="#">Tips Diet Sehat Anti-Lapar</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-card">
+          <h3>📋 Kategori</h3>
+          <ul class="sidebar-list">
+            <li><a href="#">Jantung & Pembuluh Darah (128)</a></li>
+            <li><a href="#">Diabetes & Metabolisme (94)</a></li>
+            <li><a href="#">Kesehatan Mental (112)</a></li>
+            <li><a href="#">Gizi & Diet (103)</a></li>
+            <li><a href="#">Olahraga & Kebugaran (87)</a></li>
+            <li><a href="#">Kesehatan Anak (89)</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-card" style="background:var(--clr-primary-lt);border-color:var(--clr-primary)">
+          <h3>💬 Konsultasi Gratis</h3>
+          <p style="font-size:.86rem;color:var(--clr-muted);margin-bottom:1rem">Punya pertanyaan kesehatan? Chat langsung dengan dokter kami.</p>
+          <a href="konsultasi.html" class="btn-primary" style="display:block;text-align:center">Mulai Konsultasi</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2025 SehatKu. Informasi di situs ini tidak menggantikan saran dokter profesional.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+const ARTICLES_DATA = [
+  { cat:'jantung', emoji:'❤️', tag:'Jantung', date:'10 Jun 2025', time:'5 menit', title:'7 Cara Menjaga Kesehatan Jantung di Usia 30-an', excerpt:'Penyakit jantung kini mengintai di usia yang lebih muda. Temukan strategi pencegahan yang terbukti secara ilmiah dari para kardiolog terkemuka.' },
+  { cat:'diabetes', emoji:'🩸', tag:'Diabetes', date:'8 Jun 2025', time:'7 menit', title:'Panduan Lengkap Pola Makan Penderita Diabetes Tipe 2', excerpt:'Diet yang tepat adalah fondasi manajemen diabetes. Pelajari makanan yang boleh dan tidak boleh dikonsumsi, beserta contoh menu sehari.' },
+  { cat:'mental', emoji:'🧠', tag:'Mental Health', date:'6 Jun 2025', time:'4 menit', title:'Mengenali Tanda-tanda Burnout dan Cara Mengatasinya', excerpt:'Burnout bukan sekadar kelelahan biasa. Kenali 10 gejala burnout sejak dini dan ambil langkah pemulihan yang tepat.' },
+  { cat:'gizi', emoji:'🥗', tag:'Gizi', date:'4 Jun 2025', time:'6 menit', title:'Superfood Lokal Indonesia yang Menyehatkan', excerpt:'Tempe, daun kelor, dan kunyit adalah beberapa superfood lokal dengan manfaat luar biasa. Kaya nutrisi dan mudah didapat.' },
+  { cat:'olahraga', emoji:'🏃', tag:'Olahraga', date:'2 Jun 2025', time:'5 menit', title:'Olahraga 30 Menit Sehari: Manfaat yang Mengejutkan', excerpt:'Hanya 30 menit olahraga sedang per hari sudah cukup untuk menurunkan risiko berbagai penyakit kronis, termasuk jantung dan diabetes.' },
+  { cat:'mental', emoji:'😴', tag:'Tidur', date:'30 Mei 2025', time:'4 menit', title:'Mengapa Tidur 7-8 Jam Sangat Penting untuk Kesehatan', excerpt:'Kurang tidur berkaitan erat dengan obesitas, diabetes, gangguan imun, dan penyakit jantung. Pelajari cara memperbaiki kualitas tidur.' },
+  { cat:'jantung', emoji:'🩺', tag:'Jantung', date:'28 Mei 2025', time:'8 menit', title:'Mengenal Perbedaan Serangan Jantung dan Henti Jantung', excerpt:'Banyak orang mengira keduanya sama. Perbedaan ini bisa menentukan cara pertolongan pertama yang harus diberikan.' },
+  { cat:'gizi', emoji:'💧', tag:'Hidrasi', date:'25 Mei 2025', time:'3 menit', title:'Berapa Banyak Air yang Harus Diminum Setiap Hari?', excerpt:'Formula 8 gelas sehari tidak berlaku untuk semua orang. Kebutuhan cairan dipengaruhi berat badan, iklim, dan aktivitas fisik.' },
+];
+
+let currentCat = 'semua';
+
+function renderArticles() {
+  const list = document.getElementById('articleList');
+  const filtered = ARTICLES_DATA.filter(a => currentCat === 'semua' || a.cat === currentCat);
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">📄</div><h3>Belum ada artikel</h3><p>Kategori ini sedang dalam pengembangan.</p></div>';
+    return;
+  }
+  list.innerHTML = filtered.map(a => `
     <div class="article-card" style="display:grid;grid-template-columns:100px 1fr;overflow:hidden">
       <div class="article-img" style="height:100%;min-height:100px;font-size:2.5rem">${a.emoji}</div>
       <div class="article-body">
@@ -123,22 +122,23 @@
         <div class="article-title">${a.title}</div>
         <div class="article-excerpt">${a.excerpt}</div>
         <div class="article-meta">
-          <span>${a.date} Â· ${a.time} baca</span>
-          <button class="article-read-btn" onclick="alert('Artikel lengkap akan tersedia di versi berikutnya!')">Baca â†’</button>
+          <span>${a.date} · ${a.time} baca</span>
+          <button class="article-read-btn" onclick="alert('Artikel lengkap akan tersedia di versi berikutnya!')">Baca →</button>
         </div>
       </div>
     </div>
   `).join('');
-    }
-    function filterArt(cat, btn) {
-      currentCat = cat;
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      renderArticles();
-    }
+}
 
-    document.addEventListener('DOMContentLoaded', renderArticles);
-  </script>
-  <script src="../js/darkmode.js"></script>
+function filterArt(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderArticles();
+}
+
+document.addEventListener('DOMContentLoaded', renderArticles);
+</script>
+<script src="../js/darkmode.js"></script>
 </body>
 </html>

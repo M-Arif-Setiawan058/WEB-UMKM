@@ -1,103 +1,54 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Halaman Tidak Ditemukan â€” SehatKu</title>
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../css/main.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap"
-    rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Halaman Tidak Ditemukan — SehatKu</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet"/>
   <style>
     .error-page {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 2rem;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center; padding: 2rem;
     }
-
     .error-code {
-      font-size: clamp(6rem, 15vw, 12rem);
-      font-weight: 800;
-      font-family: var(--ff-display);
-      color: var(--clr-primary-lt);
-      line-height: 1;
-      user-select: none;
+      font-size: clamp(6rem, 15vw, 12rem); font-weight: 800;
+      font-family: var(--ff-display); color: var(--clr-primary-lt);
+      line-height: 1; user-select: none;
     }
-
-    .error-title {
-      font-family: var(--ff-display);
-      font-size: 2rem;
-      margin: 1rem 0 .75rem;
-    }
-
-    .error-desc {
-      color: var(--clr-muted);
-      max-width: 440px;
-      margin: 0 auto 2rem;
-    }
-
-    .error-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .error-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .pulse {
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        transform: scale(1)
-      }
-
-      50% {
-        transform: scale(1.1)
-      }
-    }
+    .error-title { font-family: var(--ff-display); font-size: 2rem; margin: 1rem 0 .75rem; }
+    .error-desc  { color: var(--clr-muted); max-width: 440px; margin: 0 auto 2rem; }
+    .error-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .error-icon  { font-size: 3rem; margin-bottom: 1rem; }
+    .pulse { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
   </style>
 </head>
-
 <body>
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="../index.html" class="nav-logo"><span class="logo-icon">âœš</span><span class="logo-text">Sehat<span
-            class="logo-accent">Ku</span></span></a>
-    </div>
-  </nav>
-  <div class="error-page">
-    <div class="error-icon pulse">ðŸ¥</div>
-    <div class="error-code">404</div>
-    <h1 class="error-title">Halaman Tidak Ditemukan</h1>
-    <p class="error-desc">Ups! Sepertinya halaman yang Anda cari sudah pindah, dihapus, atau tidak pernah ada. Tapi
-      jangan khawatir â€” kesehatan Anda tetap prioritas kami!</p>
-    <div class="error-links">
-      <a href="../index.html" class="btn-primary">ðŸ  Kembali ke Beranda</a>
-      <a href="artikel.html" class="btn-outline" style="color:var(--clr-primary);border-color:var(--clr-primary)">ðŸ“š
-        Baca Artikel</a>
-      <a href="konsultasi.html" class="btn-outline"
-        style="color:var(--clr-primary);border-color:var(--clr-primary)">ðŸ’¬ Konsultasi</a>
-    </div>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="nav-logo"><span class="logo-icon">✚</span><span class="logo-text">Sehat<span class="logo-accent">Ku</span></span></a>
   </div>
-  <script>
-    // Navbar scroll
-    const nb = document.getElementById('navbar');
-    window.addEventListener('scroll', () => nb.classList.toggle('scrolled', window.scrollY > 30));
-  </script>
-  <script src="../js/darkmode.js"></script>
+</nav>
+
+<div class="error-page">
+  <div class="error-icon pulse">🏥</div>
+  <div class="error-code">404</div>
+  <h1 class="error-title">Halaman Tidak Ditemukan</h1>
+  <p class="error-desc">Ups! Sepertinya halaman yang Anda cari sudah pindah, dihapus, atau tidak pernah ada. Tapi jangan khawatir — kesehatan Anda tetap prioritas kami!</p>
+  <div class="error-links">
+    <a href="../index.html" class="btn-primary">🏠 Kembali ke Beranda</a>
+    <a href="artikel.html" class="btn-outline" style="color:var(--clr-primary);border-color:var(--clr-primary)">📚 Baca Artikel</a>
+    <a href="konsultasi.html" class="btn-outline" style="color:var(--clr-primary);border-color:var(--clr-primary)">💬 Konsultasi</a>
+  </div>
+</div>
+
+<script>
+  // Navbar scroll
+  const nb = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nb.classList.toggle('scrolled', window.scrollY > 30));
+</script>
+<script src="../js/darkmode.js"></script>
 </body>
 </html>

@@ -1,373 +1,558 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kalkulator Kesehatan â€” SehatKu</title>
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../css/main.css" />
-  <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/darkmode.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap"
-    rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kalkulator Kesehatan — SehatKu</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/components.css"/>
+  <link rel="stylesheet" href="../css/darkmode.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet"/>
   <style>
-    .calc-tabs {
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
+    .calc-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
     .calc-tab {
-      padding: .6rem 1.3rem;
-      border-radius: var(--radius-xl);
-      border: 2px solid var(--clr-border);
-      font-weight: 600;
-      font-size: .9rem;
-      transition: all var(--transition);
-      background: var(--clr-surface);
-      display: flex;
-      align-items: center;
-      gap: .4rem;
+      padding: .6rem 1.3rem; border-radius: var(--radius-xl);
+      border: 2px solid var(--clr-border); font-weight: 600; font-size: .9rem;
+      transition: all var(--transition); background: var(--clr-surface);
+      display: flex; align-items: center; gap: .4rem;
     }
+    .calc-tab.active { background: var(--clr-primary); color: #fff; border-color: var(--clr-primary); }
+    .calc-tab:hover:not(.active) { border-color: var(--clr-primary); color: var(--clr-primary); }
 
-    .calc-tab.active {
-      background: var(--clr-primary);
-      color: #fff;
-      border-color: var(--clr-primary);
-    }
-
-    .calc-tab:hover:not(.active) {
-      border-color: var(--clr-primary);
-      color: var(--clr-primary);
-    }
-
-    .calc-panel {
-      display: none;
-    }
-
-    .calc-panel.active {
-      display: block;
-    }
+    .calc-panel { display: none; }
+    .calc-panel.active { display: block; }
 
     .calc-card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-md);
+      background: var(--clr-surface); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md);
       max-width: 600px;
     }
+    .calc-card h2 { font-family: var(--ff-display); font-size: 1.6rem; margin-bottom: .5rem; }
+    .calc-card .desc { color: var(--clr-muted); margin-bottom: 1.5rem; font-size: .92rem; }
 
-    .calc-card h2 {
-      font-family: var(--ff-display);
-      font-size: 1.6rem;
-      margin-bottom: .5rem;
-    }
+    .input-row { display: grid; gap: 1rem; margin-bottom: 1.25rem; }
+    .input-row.cols-2 { grid-template-columns: 1fr 1fr; }
+    .input-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 
-    .calc-card .desc {
-      color: var(--clr-muted);
-      margin-bottom: 1.5rem;
-      font-size: .92rem;
-    }
-
-    .input-row {
-      display: grid;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .input-row.cols-2 {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .input-row.cols-3 {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: .4rem;
-    }
-
-    .field-group label {
-      font-size: .83rem;
-      font-weight: 600;
-      color: var(--clr-muted);
-    }
-
+    .field-group { display: flex; flex-direction: column; gap: .4rem; }
+    .field-group label { font-size: .83rem; font-weight: 600; color: var(--clr-muted); }
     .field-input {
-      display: flex;
-      align-items: center;
-      border: 2px solid var(--clr-border);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      transition: border-color var(--transition);
+      display: flex; align-items: center;
+      border: 2px solid var(--clr-border); border-radius: var(--radius-sm);
+      overflow: hidden; transition: border-color var(--transition);
     }
-
-    .field-input:focus-within {
-      border-color: var(--clr-primary);
+    .field-input:focus-within { border-color: var(--clr-primary); }
+    .field-input input, .field-input select {
+      flex: 1; padding: .65rem .85rem; border: none; outline: none;
+      font-size: .95rem; font-family: var(--ff-body); background: transparent; min-width: 0;
     }
-
-    .field-input input,
-    .field-input select {
-      flex: 1;
-      padding: .65rem .85rem;
-      border: none;
-      outline: none;
-      font-size: .95rem;
-      font-family: var(--ff-body);
-      background: transparent;
-      min-width: 0;
-    }
-
     .field-input .unit {
-      background: var(--clr-bg);
-      padding: .65rem .8rem;
-      font-size: .8rem;
-      color: var(--clr-muted);
-      font-weight: 600;
-      border-left: 1px solid var(--clr-border);
-      white-space: nowrap;
+      background: var(--clr-bg); padding: .65rem .8rem;
+      font-size: .8rem; color: var(--clr-muted); font-weight: 600;
+      border-left: 1px solid var(--clr-border); white-space: nowrap;
     }
 
     .calc-btn {
-      width: 100%;
-      padding: .9rem;
-      background: var(--clr-primary);
-      color: #fff;
-      border-radius: var(--radius-xl);
-      font-weight: 700;
-      font-size: 1rem;
-      transition: background var(--transition);
-      margin-bottom: 1rem;
+      width: 100%; padding: .9rem; background: var(--clr-primary); color: #fff;
+      border-radius: var(--radius-xl); font-weight: 700; font-size: 1rem;
+      transition: background var(--transition); margin-bottom: 1rem;
     }
-
-    .calc-btn:hover {
-      background: var(--clr-primary-dk);
-    }
+    .calc-btn:hover { background: var(--clr-primary-dk); }
 
     .result-box {
-      background: var(--clr-primary-lt);
-      border: 1.5px solid var(--clr-primary);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      margin-top: 1rem;
+      background: var(--clr-primary-lt); border: 1.5px solid var(--clr-primary);
+      border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;
       display: none;
     }
-
-    .result-box.show {
-      display: block;
-    }
-
-    .result-main {
-      font-size: 2.5rem;
-      font-weight: 800;
-      font-family: var(--ff-display);
-      color: var(--clr-primary);
-    }
-
-    .result-label {
-      font-size: .85rem;
-      color: var(--clr-muted);
-      margin-top: .15rem;
-      margin-bottom: .75rem;
-    }
-
-    .result-detail {
-      font-size: .88rem;
-      color: var(--clr-text);
-      line-height: 1.6;
-    }
-
-    .result-items {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .6rem;
-      margin-top: .75rem;
-    }
-
+    .result-box.show { display: block; }
+    .result-main { font-size: 2.5rem; font-weight: 800; font-family: var(--ff-display); color: var(--clr-primary); }
+    .result-label { font-size: .85rem; color: var(--clr-muted); margin-top: .15rem; margin-bottom: .75rem; }
+    .result-detail { font-size: .88rem; color: var(--clr-text); line-height: 1.6; }
+    .result-items { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: .75rem; }
     .result-item {
-      background: var(--clr-surface);
-      border-radius: var(--radius-sm);
-      padding: .7rem .9rem;
-      border: 1px solid var(--clr-border);
+      background: var(--clr-surface); border-radius: var(--radius-sm);
+      padding: .7rem .9rem; border: 1px solid var(--clr-border);
     }
+    .result-item .ri-label { font-size: .74rem; color: var(--clr-muted); margin-bottom: .15rem; }
+    .result-item .ri-val { font-weight: 700; font-size: 1rem; color: var(--clr-text); }
 
-    .result-item .ri-label {
-      font-size: .74rem;
-      color: var(--clr-muted);
-      margin-bottom: .15rem;
+    .sidebar-tips { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+
+    @media(max-width:768px){
+      .input-row.cols-3 { grid-template-columns: 1fr 1fr; }
+      .result-items { grid-template-columns: 1fr; }
     }
-
-    .result-item .ri-val {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--clr-text);
-    }
-
-    .sidebar-tips {
-      position: sticky;
-      top: calc(var(--nav-h) + 1.5rem);
-    }
-
-    @media(max-width:768px) {
-      .input-row.cols-3 {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .result-items {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media(max-width:480px) {
-
-      .input-row.cols-2,
-      .input-row.cols-3 {
-        grid-template-columns: 1fr;
-      }
+    @media(max-width:480px){
+      .input-row.cols-2, .input-row.cols-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="../index.html" class="nav-logo"><span class="logo-icon">âœš</span><span class="logo-text">Sehat<span
-            class="logo-accent">Ku</span></span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="../index.html" class="nav-link">Beranda</a></li>
-        <li><a href="artikel.html" class="nav-link">Artikel</a></li>
-        <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
-        <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
-        <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
-      </ul>
-      <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">ðŸŒ™</button>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-eyebrow">Alat Interaktif</div>
-      <h1>Kalkulator Kesehatan</h1>
-      <p>Hitung berbagai indikator kesehatan Anda secara instan dan akurat.</p>
-    </div>
-  </section>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="nav-logo"><span class="logo-icon">✚</span><span class="logo-text">Sehat<span class="logo-accent">Ku</span></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html" class="nav-link">Beranda</a></li>
+      <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+      <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
+      <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
+      <li><a href="dokter.html" class="nav-link">Cari Dokter</a></li>
+      <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
+    </ul>
+    <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">🌙</button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-  <section class="section">
-    <div class="container">
-      <div class="calc-tabs">
-        <button class="calc-tab active" onclick="switchTab('bmi',this)">âš–ï¸ BMI</button>
-        <button class="calc-tab" onclick="switchTab('kalori',this)">ðŸ”¥ Kebutuhan Kalori</button>
-        <button class="calc-tab" onclick="switchTab('air',this)">ðŸ’§ Kebutuhan Air</button>
-        <button class="calc-tab" onclick="switchTab('detak',this)">â¤ï¸ Detak Jantung Target</button>
-        <button class="calc-tab" onclick="switchTab('gula',this)">ðŸ©¸ Risiko Diabetes</button>
-        <button class="calc-tab" onclick="switchTab('hamil',this)">ðŸ¤± Usia Kehamilan</button>
+<section class="page-hero">
+  <div class="container">
+    <div class="section-eyebrow">Alat Interaktif</div>
+    <h1>Kalkulator Kesehatan</h1>
+    <p>Hitung berbagai indikator kesehatan Anda secara instan dan akurat.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchTab('bmi',this)">⚖️ BMI</button>
+      <button class="calc-tab" onclick="switchTab('kalori',this)">🔥 Kebutuhan Kalori</button>
+      <button class="calc-tab" onclick="switchTab('air',this)">💧 Kebutuhan Air</button>
+      <button class="calc-tab" onclick="switchTab('detak',this)">❤️ Detak Jantung Target</button>
+      <button class="calc-tab" onclick="switchTab('gula',this)">🩸 Risiko Diabetes</button>
+      <button class="calc-tab" onclick="switchTab('hamil',this)">🤱 Usia Kehamilan</button>
+    </div>
+
+    <div class="sidebar-layout" style="align-items:start">
+      <div>
+
+        <!-- BMI -->
+        <div class="calc-panel active" id="panel-bmi">
+          <div class="calc-card">
+            <h2>⚖️ Kalkulator BMI</h2>
+            <p class="desc">Indeks Massa Tubuh (BMI) adalah ukuran lemak tubuh berdasarkan tinggi dan berat badan.</p>
+            <div class="input-row cols-3">
+              <div class="field-group">
+                <label>Berat Badan</label>
+                <div class="field-input"><input type="number" id="b_weight" placeholder="70"/><span class="unit">kg</span></div>
+              </div>
+              <div class="field-group">
+                <label>Tinggi Badan</label>
+                <div class="field-input"><input type="number" id="b_height" placeholder="170"/><span class="unit">cm</span></div>
+              </div>
+              <div class="field-group">
+                <label>Jenis Kelamin</label>
+                <div class="field-input">
+                  <select id="b_gender"><option value="m">Laki-laki</option><option value="f">Perempuan</option></select>
+                </div>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="calcBMI()">Hitung BMI</button>
+            <div class="result-box" id="res-bmi">
+              <div class="result-main" id="rb-score"></div>
+              <div class="result-label" id="rb-cat"></div>
+              <div class="result-detail" id="rb-detail"></div>
+              <div class="result-items" id="rb-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KALORI -->
+        <div class="calc-panel" id="panel-kalori">
+          <div class="calc-card">
+            <h2>🔥 Kebutuhan Kalori Harian</h2>
+            <p class="desc">Hitung kebutuhan kalori harian Anda berdasarkan rumus Mifflin-St Jeor yang diakui secara ilmiah.</p>
+            <div class="input-row cols-2">
+              <div class="field-group">
+                <label>Berat Badan</label>
+                <div class="field-input"><input type="number" id="k_weight" placeholder="70"/><span class="unit">kg</span></div>
+              </div>
+              <div class="field-group">
+                <label>Tinggi Badan</label>
+                <div class="field-input"><input type="number" id="k_height" placeholder="170"/><span class="unit">cm</span></div>
+              </div>
+              <div class="field-group">
+                <label>Usia</label>
+                <div class="field-input"><input type="number" id="k_age" placeholder="25"/><span class="unit">tahun</span></div>
+              </div>
+              <div class="field-group">
+                <label>Jenis Kelamin</label>
+                <div class="field-input"><select id="k_gender"><option value="m">Laki-laki</option><option value="f">Perempuan</option></select></div>
+              </div>
+            </div>
+            <div class="field-group" style="margin-bottom:1.25rem">
+              <label>Tingkat Aktivitas</label>
+              <div class="field-input">
+                <select id="k_activity">
+                  <option value="1.2">Sangat Jarang (Tidak berolahraga)</option>
+                  <option value="1.375">Ringan (Olahraga 1-3x/minggu)</option>
+                  <option value="1.55" selected>Sedang (Olahraga 3-5x/minggu)</option>
+                  <option value="1.725">Aktif (Olahraga 6-7x/minggu)</option>
+                  <option value="1.9">Sangat Aktif (Olahraga berat 2x/hari)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group" style="margin-bottom:1.25rem">
+              <label>Tujuan</label>
+              <div class="field-input">
+                <select id="k_goal">
+                  <option value="maintain">Pertahankan Berat Badan</option>
+                  <option value="lose_slow">Turun Berat Badan Perlahan (−0.25 kg/minggu)</option>
+                  <option value="lose">Turun Berat Badan (−0.5 kg/minggu)</option>
+                  <option value="lose_fast">Turun Berat Badan Cepat (−1 kg/minggu)</option>
+                  <option value="gain">Naik Berat Badan (+0.5 kg/minggu)</option>
+                </select>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="calcKalori()">Hitung Kalori</button>
+            <div class="result-box" id="res-kalori">
+              <div class="result-main" id="rk-score"></div>
+              <div class="result-label">Kalori per hari yang disarankan</div>
+              <div class="result-items" id="rk-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AIR -->
+        <div class="calc-panel" id="panel-air">
+          <div class="calc-card">
+            <h2>💧 Kebutuhan Air Harian</h2>
+            <p class="desc">Kebutuhan cairan berbeda-beda tergantung berat badan, iklim, dan tingkat aktivitas.</p>
+            <div class="input-row cols-2">
+              <div class="field-group">
+                <label>Berat Badan</label>
+                <div class="field-input"><input type="number" id="a_weight" placeholder="70"/><span class="unit">kg</span></div>
+              </div>
+              <div class="field-group">
+                <label>Usia</label>
+                <div class="field-input"><input type="number" id="a_age" placeholder="25"/><span class="unit">tahun</span></div>
+              </div>
+            </div>
+            <div class="field-group" style="margin-bottom:1rem">
+              <label>Tingkat Aktivitas</label>
+              <div class="field-input">
+                <select id="a_activity">
+                  <option value="1">Tidak aktif (duduk seharian)</option>
+                  <option value="1.2" selected>Ringan (berjalan, kerja ringan)</option>
+                  <option value="1.5">Sedang (olahraga 3-5x/minggu)</option>
+                  <option value="1.8">Berat (olahraga intensif)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group" style="margin-bottom:1.25rem">
+              <label>Iklim / Suhu Lingkungan</label>
+              <div class="field-input">
+                <select id="a_climate">
+                  <option value="1">Sedang (AC/ber-AC)</option>
+                  <option value="1.2" selected>Panas (tropis normal)</option>
+                  <option value="1.4">Sangat Panas (outdoor/terik)</option>
+                </select>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="calcAir()">Hitung Kebutuhan Air</button>
+            <div class="result-box" id="res-air">
+              <div class="result-main" id="ra-score"></div>
+              <div class="result-label">liter air per hari</div>
+              <div class="result-items" id="ra-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAK JANTUNG -->
+        <div class="calc-panel" id="panel-detak">
+          <div class="calc-card">
+            <h2>❤️ Zona Detak Jantung Target</h2>
+            <p class="desc">Latihan di zona detak jantung yang tepat memaksimalkan pembakaran lemak dan kebugaran kardiovaskular.</p>
+            <div class="input-row cols-2">
+              <div class="field-group">
+                <label>Usia</label>
+                <div class="field-input"><input type="number" id="d_age" placeholder="30"/><span class="unit">tahun</span></div>
+              </div>
+              <div class="field-group">
+                <label>Detak Jantung Istirahat</label>
+                <div class="field-input"><input type="number" id="d_resting" placeholder="70"/><span class="unit">bpm</span></div>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="calcDetak()">Hitung Zona Jantung</button>
+            <div class="result-box" id="res-detak">
+              <div class="result-main" id="rd-max"></div>
+              <div class="result-label">Detak Jantung Maksimal (bpm)</div>
+              <div id="rd-zones" style="margin-top:.75rem"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RISIKO DIABETES -->
+        <div class="calc-panel" id="panel-gula">
+          <div class="calc-card">
+            <h2>🩸 Skrining Risiko Diabetes</h2>
+            <p class="desc">Tes skrining cepat berdasarkan faktor risiko diabetes tipe 2 (bukan diagnosis medis).</p>
+            <div class="input-row cols-2">
+              <div class="field-group">
+                <label>Usia</label>
+                <div class="field-input"><input type="number" id="g_age" placeholder="40"/><span class="unit">tahun</span></div>
+              </div>
+              <div class="field-group">
+                <label>BMI</label>
+                <div class="field-input"><input type="number" id="g_bmi" placeholder="25" step="0.1"/><span class="unit">kg/m²</span></div>
+              </div>
+            </div>
+            <div class="input-row cols-2">
+              <div class="field-group">
+                <label>Riwayat Keluarga Diabetes</label>
+                <div class="field-input"><select id="g_family"><option value="0">Tidak ada</option><option value="1">Ada (1 anggota)</option><option value="2">Ada (2+ anggota)</option></select></div>
+              </div>
+              <div class="field-group">
+                <label>Tekanan Darah</label>
+                <div class="field-input"><select id="g_bp"><option value="0">Normal (< 130/80)</option><option value="1">Prehipertensi</option><option value="2">Hipertensi</option></select></div>
+              </div>
+              <div class="field-group">
+                <label>Aktivitas Fisik</label>
+                <div class="field-input"><select id="g_act"><option value="0">Aktif (>150 mnt/minggu)</option><option value="1">Kurang aktif</option><option value="2">Tidak aktif sama sekali</option></select></div>
+              </div>
+              <div class="field-group">
+                <label>Pola Makan</label>
+                <div class="field-input"><select id="g_diet"><option value="0">Sehat & bervariasi</option><option value="1">Kadang-kadang kurang sehat</option><option value="2">Banyak gula & lemak</option></select></div>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="calcGula()">Cek Risiko Saya</button>
+            <div class="result-box" id="res-gula">
+              <div class="result-main" id="rg-score"></div>
+              <div class="result-label" id="rg-label"></div>
+              <div class="result-detail" id="rg-detail"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KEHAMILAN -->
+        <div class="calc-panel" id="panel-hamil">
+          <div class="calc-card">
+            <h2>🤱 Kalkulator Usia Kehamilan</h2>
+            <p class="desc">Hitung usia kehamilan dan perkiraan tanggal persalinan (HPL) berdasarkan HPHT.</p>
+            <div class="input-row">
+              <div class="field-group">
+                <label>Hari Pertama Haid Terakhir (HPHT)</label>
+                <div class="field-input"><input type="date" id="h_lmp"/></div>
+              </div>
+              <div class="field-group">
+                <label>Panjang Siklus Haid Rata-rata</label>
+                <div class="field-input"><input type="number" id="h_cycle" value="28" min="21" max="35"/><span class="unit">hari</span></div>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="calcHamil()">Hitung Usia Kehamilan</button>
+            <div class="result-box" id="res-hamil">
+              <div class="result-main" id="rh-weeks"></div>
+              <div class="result-label" id="rh-label"></div>
+              <div class="result-items" id="rh-items"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end main col -->
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar-tips">
+        <div class="sidebar-card">
+          <h3>ℹ️ Tentang Kalkulator Ini</h3>
+          <p style="font-size:.85rem;color:var(--clr-muted);line-height:1.6">Kalkulator ini menggunakan formula medis yang diakui secara internasional. Hasil yang diperoleh bersifat estimasi dan tidak menggantikan evaluasi medis profesional.</p>
+        </div>
+        <div class="sidebar-card">
+          <h3>📊 Referensi Nilai Normal</h3>
+          <ul style="display:flex;flex-direction:column;gap:.5rem;font-size:.84rem">
+            <li><strong>BMI Normal:</strong> 18.5 – 22.9</li>
+            <li><strong>Tekanan Darah:</strong> < 120/80 mmHg</li>
+            <li><strong>Gula Darah Puasa:</strong> 70–99 mg/dL</li>
+            <li><strong>Kolesterol Total:</strong> < 200 mg/dL</li>
+            <li><strong>Detak Jantung:</strong> 60–100 bpm</li>
+            <li><strong>Saturasi O₂:</strong> 95–100%</li>
+          </ul>
+        </div>
+        <div class="sidebar-card" style="background:var(--clr-primary-lt);border-color:var(--clr-primary)">
+          <h3>💬 Butuh Penjelasan?</h3>
+          <p style="font-size:.84rem;color:var(--clr-muted);margin-bottom:1rem">Tanyakan hasil kalkulasi Anda kepada asisten kesehatan AI kami.</p>
+          <a href="konsultasi.html" class="btn-primary" style="display:block;text-align:center;font-size:.88rem">Tanya Asisten AI</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2025 SehatKu. Kalkulator ini bersifat estimasi dan tidak menggantikan diagnosa dokter.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+/* ---- TAB SWITCH ---- */
+function switchTab(id, btn) {
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ---- BMI ---- */
+function calcBMI() {
+  const w = +document.getElementById('b_weight').value;
+  const h = +document.getElementById('b_height').value / 100;
+  if (!w || !h) return showToast('⚠️ Isi semua field terlebih dahulu.');
+  const bmi = (w / (h * h)).toFixed(1);
+  let cat, color, detail, bw;
+  if (bmi < 18.5) { cat='Kekurangan Berat Badan'; color='#4aa3df'; detail='Tingkatkan asupan kalori bergizi. Konsultasikan dengan ahli gizi.'; bw = h*h*18.5; }
+  else if (bmi < 23) { cat='✅ Normal (Ideal)'; color=getComputedStyle(document.documentElement).getPropertyValue('--clr-primary'); detail='Pertahankan! Tetap jaga pola makan sehat dan olahraga rutin.'; bw = null; }
+  else if (bmi < 25) { cat='⚠️ Kelebihan Berat Badan'; color='#f0a500'; detail='Kurangi 200-300 kalori/hari & tambah aktivitas fisik.'; bw = h*h*23; }
+  else if (bmi < 30) { cat='🔴 Obesitas Tingkat I'; color='#e07020'; detail='Risiko penyakit meningkat. Segera konsultasi dokter.'; bw = h*h*23; }
+  else { cat='🔴 Obesitas Tingkat II'; color='#e04040'; detail='Risiko serius. Perlu intervensi medis segera.'; bw = h*h*23; }
+  const res = document.getElementById('res-bmi');
+  document.getElementById('rb-score').textContent = bmi;
+  document.getElementById('rb-score').style.color = color;
+  document.getElementById('rb-cat').textContent = cat;
+  document.getElementById('rb-detail').textContent = detail;
+  const tbw = (w / (h * h));
+  document.getElementById('rb-items').innerHTML = `
+    <div class="result-item"><div class="ri-label">BMI Anda</div><div class="ri-val" style="color:${color}">${bmi}</div></div>
+    <div class="result-item"><div class="ri-label">Berat Ideal</div><div class="ri-val">${(h*h*18.5).toFixed(1)}–${(h*h*23).toFixed(1)} kg</div></div>
+    ${bw ? `<div class="result-item"><div class="ri-label">Target Penurunan</div><div class="ri-val">${(w - bw).toFixed(1)} kg</div></div>` : '<div class="result-item"><div class="ri-label">Status</div><div class="ri-val" style="color:var(--clr-primary)">Ideal ✓</div></div>'}
+    <div class="result-item"><div class="ri-label">Kategori Asia</div><div class="ri-val">${bmi < 18.5 ? 'Kurus' : bmi < 23 ? 'Normal' : bmi < 27.5 ? 'Gemuk' : 'Obesitas'}</div></div>
+  `;
+  res.classList.add('show');
+}
+
+/* ---- KALORI ---- */
+function calcKalori() {
+  const w = +document.getElementById('k_weight').value;
+  const h = +document.getElementById('k_height').value;
+  const a = +document.getElementById('k_age').value;
+  const g = document.getElementById('k_gender').value;
+  const act = +document.getElementById('k_activity').value;
+  const goal = document.getElementById('k_goal').value;
+  if (!w || !h || !a) return showToast('⚠️ Isi semua field terlebih dahulu.');
+  // Mifflin-St Jeor
+  const bmr = g === 'm' ? (10*w + 6.25*h - 5*a + 5) : (10*w + 6.25*h - 5*a - 161);
+  const tdee = Math.round(bmr * act);
+  const adj = { maintain:0, lose_slow:-250, lose:-500, lose_fast:-1000, gain:500 }[goal];
+  const target = tdee + adj;
+  document.getElementById('rk-score').textContent = target + ' kkal';
+  document.getElementById('rk-items').innerHTML = `
+    <div class="result-item"><div class="ri-label">BMR (Metabolisme Dasar)</div><div class="ri-val">${Math.round(bmr)} kkal</div></div>
+    <div class="result-item"><div class="ri-label">TDEE (Total Pengeluaran)</div><div class="ri-val">${tdee} kkal</div></div>
+    <div class="result-item"><div class="ri-label">Protein (25%)</div><div class="ri-val">${Math.round(target*0.25/4)} g</div></div>
+    <div class="result-item"><div class="ri-label">Karbohidrat (50%)</div><div class="ri-val">${Math.round(target*0.50/4)} g</div></div>
+    <div class="result-item"><div class="ri-label">Lemak (25%)</div><div class="ri-val">${Math.round(target*0.25/9)} g</div></div>
+    <div class="result-item"><div class="ri-label">Penyesuaian Tujuan</div><div class="ri-val">${adj >= 0 ? '+':''} ${adj} kkal</div></div>
+  `;
+  document.getElementById('res-kalori').classList.add('show');
+}
+
+/* ---- AIR ---- */
+function calcAir() {
+  const w = +document.getElementById('a_weight').value;
+  const age = +document.getElementById('a_age').value;
+  const act = +document.getElementById('a_activity').value;
+  const climate = +document.getElementById('a_climate').value;
+  if (!w) return showToast('⚠️ Masukkan berat badan Anda.');
+  let base = w * 0.033;
+  base *= act * climate;
+  if (age > 60) base *= 0.9;
+  const liters = base.toFixed(1);
+  const glasses = Math.round(base / 0.25);
+  const bottles = (base / 1.5).toFixed(1);
+  document.getElementById('ra-score').textContent = liters + ' L';
+  document.getElementById('ra-items').innerHTML = `
+    <div class="result-item"><div class="ri-label">Dalam Gelas (250ml)</div><div class="ri-val">${glasses} gelas</div></div>
+    <div class="result-item"><div class="ri-label">Dalam Botol (1.5L)</div><div class="ri-val">${bottles} botol</div></div>
+    <div class="result-item"><div class="ri-label">Per Jam (16 jam aktif)</div><div class="ri-val">${(base/16*1000).toFixed(0)} ml</div></div>
+    <div class="result-item"><div class="ri-label">Dari Makanan (~20%)</div><div class="ri-val">${(base*0.2).toFixed(1)} L</div></div>
+  `;
+  document.getElementById('res-air').classList.add('show');
+}
+
+/* ---- DETAK JANTUNG ---- */
+function calcDetak() {
+  const age = +document.getElementById('d_age').value;
+  const rest = +document.getElementById('d_resting').value || 70;
+  if (!age) return showToast('⚠️ Masukkan usia Anda.');
+  const max = 220 - age;
+  const hrr = max - rest;
+  const zones = [
+    { name:'Zone 1 – Pemulihan', pct:'50–60%', min:Math.round(hrr*.5+rest), max:Math.round(hrr*.6+rest), color:'#4aa3df', desc:'Berjalan santai, pemanasan' },
+    { name:'Zone 2 – Pembakaran Lemak', pct:'60–70%', min:Math.round(hrr*.6+rest), max:Math.round(hrr*.7+rest), color:'#1a7a4a', desc:'Jogging ringan, bersepeda santai' },
+    { name:'Zone 3 – Aerobik', pct:'70–80%', min:Math.round(hrr*.7+rest), max:Math.round(hrr*.8+rest), color:'#f0a500', desc:'Lari sedang, berenang' },
+    { name:'Zone 4 – Anaerobik', pct:'80–90%', min:Math.round(hrr*.8+rest), max:Math.round(hrr*.9+rest), color:'#e07020', desc:'Sprint, interval training' },
+    { name:'Zone 5 – Maksimal', pct:'90–100%', min:Math.round(hrr*.9+rest), max:max, color:'#e04040', desc:'Usaha penuh (jangka pendek)' },
+  ];
+  document.getElementById('rd-max').textContent = max + ' bpm';
+  document.getElementById('rd-zones').innerHTML = zones.map(z => `
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.6rem 0;border-bottom:1px solid var(--clr-border)">
+      <div style="width:12px;height:12px;border-radius:50%;background:${z.color};flex-shrink:0"></div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:.87rem">${z.name}</div>
+        <div style="font-size:.78rem;color:var(--clr-muted)">${z.desc}</div>
       </div>
+      <div style="text-align:right;font-size:.87rem;font-weight:700">${z.min}–${z.max}<span style="font-size:.72rem;font-weight:400;color:var(--clr-muted)"> bpm</span></div>
+    </div>
+  `).join('');
+  document.getElementById('res-detak').classList.add('show');
+}
 
-      <div class="sidebar-layout" style="align-items:start">
-        <div>
+/* ---- RISIKO DIABETES ---- */
+function calcGula() {
+  const age = +document.getElementById('g_age').value;
+  const bmi = +document.getElementById('g_bmi').value;
+  if (!age || !bmi) return showToast('⚠️ Isi semua field terlebih dahulu.');
+  let score = 0;
+  if (age >= 45) score += 2; else if (age >= 35) score += 1;
+  if (bmi >= 30) score += 3; else if (bmi >= 25) score += 2; else if (bmi >= 23) score += 1;
+  score += +document.getElementById('g_family').value;
+  score += +document.getElementById('g_bp').value;
+  score += +document.getElementById('g_act').value;
+  score += +document.getElementById('g_diet').value;
+  let risk, color, detail;
+  if (score <= 3) { risk='Risiko Rendah'; color='var(--clr-primary)'; detail='Pertahankan gaya hidup sehat Anda! Lakukan pemeriksaan gula darah tahunan sebagai tindakan pencegahan.'; }
+  else if (score <= 6) { risk='Risiko Sedang'; color='#f0a500'; detail='Ada beberapa faktor risiko. Tingkatkan aktivitas fisik, jaga pola makan, dan periksa gula darah setiap 6 bulan.'; }
+  else if (score <= 9) { risk='Risiko Tinggi'; color='#e07020'; detail='Risiko diabetes cukup tinggi. Segera konsultasikan dengan dokter dan lakukan tes gula darah sekarang.'; }
+  else { risk='Risiko Sangat Tinggi'; color='#e04040'; detail='Sangat disarankan untuk segera menemui dokter dan melakukan pemeriksaan HbA1c. Perubahan gaya hidup mendesak diperlukan.'; }
+  document.getElementById('rg-score').textContent = `${score}/14`;
+  document.getElementById('rg-score').style.color = color;
+  document.getElementById('rg-label').textContent = risk;
+  document.getElementById('rg-detail').textContent = detail;
+  document.getElementById('res-gula').classList.add('show');
+}
 
-          <!-- BMI -->
-          <div class="calc-panel active" id="panel-bmi">
-            <div class="calc-card">
-              <h2>âš–ï¸ Kalkulator BMI</h2>
-              <p class="desc">Indeks Massa Tubuh (BMI) adalah ukuran lemak tubuh berdasarkan tinggi dan berat badan.</p>
-              <div class="input-row cols-3">
-                <div class="field-group">
-                  <label>Berat Badan</label>
-                  <div class="field-input"><input type="number" id="b_weight" placeholder="70" /><span
-                      class="unit">kg</span></div>
-                </div>
-                <div class="field-group">
-                  <label>Tinggi Badan</label>
-                  <div class="field-input"><input type="number" id="b_height" placeholder="170" /><span
-                      class="unit">cm</span></div>
-                </div>
-                <div class="field-group">
-                  <label>Jenis Kelamin</label>
-                  <div class="field-input">
-                    <select id="b_gender">
-                      <option value="m">Laki-laki</option>
-                      <option value="f">Perempuan</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <button class="calc-btn" onclick="calcBMI()">Hitung BMI</button>
-              <div class="result-box" id="res-bmi">
-                <div class="result-main" id="rb-score"></div>
-                <div class="result-label" id="rb-cat"></div>
-                <div class="result-detail" id="rb-detail"></div>
-                <div class="result-items" id="rb-items"></div>
-              </div>
-            </div>
-          </div>
-          <!-- KALORI -->
-          <div class="calc-panel" id="panel-kalori">
-            <div class="calc-card">
-              <h2>ðŸ”¥ Kebutuhan Kalori Harian</h2>
-              <p class="desc">Hitung kebutuhan kalori harian Anda berdasarkan rumus Mifflin-St Jeor yang diakui secara
-                ilmiah.</p>
-              <div class="input-row cols-2">
-                <div class="field-group">
-                  <label>Berat Badan</label>
-                  <div class="field-input"><input type="number" id="k_weight" placeholder="70" /><span
-                      class="unit">kg</span></div>
-                </div>
-                <div class="field-group">
-                  <label>Tinggi Badan</label>
-                  <div class="field-input"><input type="number" id="k_height" placeholder="170" /><span
-                      class="unit">cm</span></div>
-                </div>
-                <div class="field-group">
-                  <label>Usia</label>
-                  <div class="field-input"><input type="number" id="k_age" placeholder="25" /><span
-                      class="unit">tahun</span></div>
-                </div>
-                <div class="field-group">
-                  <label>Jenis Kelamin</label>
-                  <div class="field-input"><select id="k_gender">
-                      <option value="m">Laki-laki</option>
-                      <option value="f">Perempuan</option>
-                    </select></div>
-                </div>
-              </div>
-              <div class="field-group" style="margin-bottom:1.25rem">
-                <label>Tingkat Aktivitas</label>
-                <div class="field-input">
-                  <select id="k_activity">
-                    <option value="1.2">Sangat Jarang (Tidak berolahraga)</option>
-                    <option value="1.375">Ringan (Olahraga 1-3x/minggu)</option>
-                    <option value="1.55" selected>Sedang (Olahraga 3-5x/minggu)</option>
-                    <option value="1.725">Aktif (Olahraga 6-7x/minggu)</option>
-                    <option value="1.9">Sangat Aktif (Olahraga berat 2x/hari)</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field-group" style="margin-bottom:1.25rem">
-                <label>Tujuan</label>
-                <div class="field-input">
-                  <select id="k_goal">
-                    <option value="maintain">Pertahankan Berat Badan</option>
-                    <option value="lose_slow">Turun Berat Badan Perlahan (âˆ’0.25 kg/minggu)</option>
-                    <option value="lose">Turun Berat Badan (âˆ’0.5 kg/minggu)</option>
-                    <option value="lose_fast">Turun Berat Badan Cepat (âˆ’1 kg/minggu)</option>
-                    <option value="gain">Naik Berat Badan (+0.5 kg/minggu)</option>
-                  </select>
-                </div>
-              </div>
-              <button class="calc-btn" onclick="calcKalori()">Hitung Kalori</button>
-              <div class="result-box" id="res-kalori">
-                <div class="result-main" id="rk-score"></div>
-                <div class="result-label">Kalori per hari yang disarankan</div>
-                <div class="result-items" id="rk-items"></div>
-              </div>
-            </div>
-          </div>
+/* ---- KEHAMILAN ---- */
+function calcHamil() {
+  const lmpVal = document.getElementById('h_lmp').value;
+  if (!lmpVal) return showToast('⚠️ Masukkan tanggal HPHT Anda.');
+  const lmp = new Date(lmpVal);
+  const cycle = +document.getElementById('h_cycle').value || 28;
+  const adjust = cycle - 28;
+  const now = new Date();
+  const diffDays = Math.floor((now - lmp) / (1000*60*60*24)) + adjust;
+  if (diffDays < 0) return showToast('⚠️ Tanggal HPHT tidak valid.');
+  const weeks = Math.floor(diffDays / 7);
+  const days = diffDays % 7;
+  const due = new Date(lmp);
+  due.setDate(due.getDate() + 280 + adjust);
+  const trimester = weeks < 14 ? 'Trimester 1' : weeks < 28 ? 'Trimester 2' : 'Trimester 3';
+  const pct = Math.min(100, Math.round((diffDays/280)*100));
+  document.getElementById('rh-weeks').textContent = `${weeks} Minggu ${days} Hari`;
+  document.getElementById('rh-label').textContent = trimester;
+  document.getElementById('rh-items').innerHTML = `
+    <div class="result-item"><div class="ri-label">Perkiraan Persalinan (HPL)</div><div class="ri-val">${due.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</div></div>
+    <div class="result-item"><div class="ri-label">Trimester</div><div class="ri-val">${trimester}</div></div>
+    <div class="result-item"><div class="ri-label">Sisa Hari</div><div class="ri-val">${Math.max(0,280-diffDays)} hari</div></div>
+    <div class="result-item"><div class="ri-label">Progress</div><div class="ri-val">${pct}%</div></div>
+  `;
+  document.getElementById('res-hamil').classList.add('show');
+}
+</script>
+<script src="../js/darkmode.js"></script>
+</body>
+</html>
