@@ -32,15 +32,34 @@
         </div>
     </nav>
     <section class="page-hero">
-  <div class="container">
-    <div class="section-eyebrow">Referensi Medis</div>
-    <h1>Ensiklopedi Penyakit</h1>
-    <p>Informasi lengkap tentang penyakit, gejala, penyebab, dan penanganannya — direview oleh dokter spesialis.</p>
-    <div class="search-wrapper" style="max-width:500px;margin:1.5rem auto 0">
-      <div class="search-bar">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="diseaseSearch" class="search-input" placeholder="Cari nama penyakit..." oninput="filterDiseases(this.value)"/>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="container">
+            <div class="section-eyebrow">Referensi Medis</div>
+            <h1>Ensiklopedi Penyakit</h1>
+            <p>Informasi lengkap tentang penyakit, gejala, penyebab, dan penanganannya — direview oleh dokter spesialis.
+            </p>
+            <div class="search-wrapper" style="max-width:500px;margin:1.5rem auto 0">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="diseaseSearch" class="search-input" placeholder="Cari nama penyakit..."
+                        oninput="filterDiseases(this.value)" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="filters-bar" id="diseaseFilters">
+                <button class="filter-pill active" onclick="filterByCategory('semua', this)">Semua</button>
+                <button class="filter-pill" onclick="filterByCategory('jantung', this)">Jantung</button>
+                <button class="filter-pill" onclick="filterByCategory('metabolik', this)">Metabolik</button>
+                <button class="filter-pill" onclick="filterByCategory('infeksi', this)">Infeksi</button>
+                <button class="filter-pill" onclick="filterByCategory('pernapasan', this)">Pernapasan</button>
+                <button class="filter-pill" onclick="filterByCategory('pencernaan', this)">Pencernaan</button>
+                <button class="filter-pill" onclick="filterByCategory('mental', this)">Mental</button>
+                <button class="filter-pill" onclick="filterByCategory('kanker', this)">Kanker</button>
+            </div>
+
+            <div class="results-grid" id="diseaseGrid"
+                style="grid-template-columns: repeat(auto-fill, minmax(280px,1fr))"></div>
+        </div>
+    </section>
