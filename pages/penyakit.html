@@ -63,3 +63,73 @@
                 style="grid-template-columns: repeat(auto-fill, minmax(280px,1fr))"></div>
         </div>
     </section>
+    <script src="../js/main.js"></script>
+<script>
+const DISEASES = [
+  { name:'Diabetes Melitus', alt:'Kencing Manis', cat:'metabolik', icon:'🩸', tags:['Kronis','Metabolik'], desc:'Kondisi di mana tubuh tidak dapat memproduksi atau menggunakan insulin secara efektif, menyebabkan kadar gula darah tinggi.' },
+  { name:'Hipertensi', alt:'Tekanan Darah Tinggi', cat:'jantung', icon:'❤️', tags:['Kronis','Kardiovaskular'], desc:'Kondisi tekanan darah dalam arteri terus-menerus tinggi (≥140/90 mmHg), faktor risiko utama penyakit jantung dan stroke.' },
+  { name:'Demam Berdarah Dengue', alt:'DBD', cat:'infeksi', icon:'🦟', tags:['Akut','Infeksi','Virus'], desc:'Penyakit virus yang ditularkan nyamuk Aedes aegypti, ditandai demam tinggi, nyeri sendi, dan penurunan trombosit.' },
+  { name:'Asma', alt:'Asthma', cat:'pernapasan', icon:'💨', tags:['Kronis','Alergi'], desc:'Penyakit inflamasi saluran napas kronis yang menyebabkan sesak napas, mengi, dan batuk berulang.' },
+  { name:'GERD', alt:'Asam Lambung / Maag', cat:'pencernaan', icon:'🫁', tags:['Kronis','Pencernaan'], desc:'Kondisi asam lambung naik ke esofagus secara berulang, menyebabkan nyeri dada, heartburn, dan regurgitasi.' },
+  { name:'Stroke', alt:'Cerebrovascular Accident', cat:'jantung', icon:'🧠', tags:['Akut','Saraf'], desc:'Gangguan suplai darah ke otak akibat penyumbatan atau pecahnya pembuluh darah, menyebabkan kerusakan otak permanen.' },
+  { name:'TBC', alt:'Tuberkulosis', cat:'infeksi', icon:'🔬', tags:['Infeksi','Bakteri'], desc:'Penyakit infeksi bakteri Mycobacterium tuberculosis yang terutama menyerang paru-paru dan sangat menular.' },
+  { name:'Kanker Payudara', alt:'Breast Cancer', cat:'kanker', icon:'🎗️', tags:['Kanker','Onkologi'], desc:'Kanker yang berkembang dari sel-sel payudara. Jenis kanker paling umum pada wanita di seluruh dunia.' },
+  { name:'Depresi', alt:'Major Depressive Disorder', cat:'mental', icon:'😔', tags:['Mental','Kronis'], desc:'Gangguan mood yang menyebabkan perasaan sedih berkepanjangan, kehilangan minat, dan penurunan kualitas hidup.' },
+  { name:'Kolesterol Tinggi', alt:'Hiperlipidemia', cat:'metabolik', icon:'🧬', tags:['Metabolik','Kronis'], desc:'Kadar lemak darah yang berlebihan, meningkatkan risiko penyumbatan arteri, penyakit jantung, dan stroke.' },
+  { name:'Tipes', alt:'Demam Tifoid', cat:'infeksi', icon:'🌡️', tags:['Infeksi','Bakteri','Akut'], desc:'Infeksi bakteri Salmonella typhi yang menyebabkan demam tinggi berkepanjangan, sakit perut, dan kelemahan.' },
+  { name:'Anemia', alt:'Kurang Darah', cat:'metabolik', icon:'💉', tags:['Metabolik'], desc:'Kondisi di mana jumlah sel darah merah atau hemoglobin dalam darah kurang dari normal, menyebabkan kelelahan.' },
+  { name:'Pneumonia', alt:'Radang Paru', cat:'pernapasan', icon:'🫁', tags:['Infeksi','Akut'], desc:'Infeksi yang menyebabkan peradangan pada satu atau kedua paru-paru, dengan gejala batuk, demam, dan sesak napas.' },
+  { name:'Maag (Gastritis)', alt:'Gastritis', cat:'pencernaan', icon:'🤢', tags:['Pencernaan'], desc:'Peradangan pada lapisan lambung yang menyebabkan nyeri perut, mual, dan gangguan pencernaan.' },
+  { name:'Kanker Paru', alt:'Lung Cancer', cat:'kanker', icon:'🫁', tags:['Kanker'], desc:'Tumor ganas yang dimulai di paru-paru. Perokok memiliki risiko 15-30 kali lebih tinggi terkena kanker ini.' },
+  { name:'Anxiety (Kecemasan)', alt:'Gangguan Kecemasan', cat:'mental', icon:'😰', tags:['Mental'], desc:'Gangguan ditandai perasaan cemas atau khawatir berlebihan yang mengganggu aktivitas sehari-hari.' },
+];
+
+let currentCategory = 'semua';
+let currentSearch = '';
+
+function renderDiseases() {
+  const grid = document.getElementById('diseaseGrid');
+  const filtered = DISEASES.filter(d => {
+    const matchCat = currentCategory === 'semua' || d.cat === currentCategory;
+    const matchQ   = !currentSearch ||
+      d.name.toLowerCase().includes(currentSearch) ||
+      (d.alt && d.alt.toLowerCase().includes(currentSearch));
+    return matchCat && matchQ;
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🔍</div><h3>Tidak ditemukan</h3><p>Coba kata kunci lain.</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(d => `
+    <div class="disease-card" onclick="window.open('https://id.wikipedia.org/wiki/${encodeURIComponent(d.name)}','_blank')">
+      <div class="disease-header">
+        <div class="disease-icon">${d.icon}</div>
+        <div>
+          <div class="disease-name">${d.name}</div>
+          <div class="disease-alt">${d.alt}</div>
+        </div>
+      </div>
+      <p style="font-size:.87rem;color:var(--clr-muted);margin-bottom:.75rem">${d.desc}</p>
+      <div class="disease-tags">${d.tags.map(t=>`<span class="disease-tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+function filterByCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderDiseases();
+}
+
+function filterDiseases(q) {
+  currentSearch = q.toLowerCase();
+  renderDiseases();
+}
+
+document.addEventListener('DOMContentLoaded', renderDiseases);
+</script>
+<script src="../js/darkmode.js"></script>
+</body>
+</html>
