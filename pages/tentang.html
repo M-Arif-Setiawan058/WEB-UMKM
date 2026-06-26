@@ -1,148 +1,384 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tentang Kami — SehatKu</title>
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml"/>
-  <link rel="stylesheet" href="../css/main.css"/>
-  <link rel="stylesheet" href="../css/components.css"/>
-  <link rel="stylesheet" href="../css/darkmode.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet"/>
-  <style>
-    .about-hero {
-      background: linear-gradient(135deg, #0f5233 0%, #1a7a4a 60%, #2a9d6a 100%);
-      padding: calc(var(--nav-h) + 4rem) 0 5rem;
-      text-align: center; color: #fff; position: relative; overflow: hidden;
-    }
-    .about-hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .about-hero h1 { font-family: var(--ff-display); font-size: clamp(2.2rem,4vw,3.4rem); margin-bottom: 1rem; position: relative; }
-    .about-hero p  { font-size: 1.15rem; opacity: .85; max-width: 580px; margin-inline: auto; position: relative; }
-    .about-hero .hero-badge { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.3); color: #fff; position: relative; }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Kami — SehatKu</title>
+    <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/darkmode.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap"
+        rel="stylesheet" />
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #0f5233 0%, #1a7a4a 60%, #2a9d6a 100%);
+            padding: calc(var(--nav-h) + 4rem) 0 5rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .mission-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-    .mission-card {
-      background: var(--clr-surface); border: 1px solid var(--clr-border);
-      border-radius: var(--radius-lg); padding: 2rem;
-      text-align: center; box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .mission-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .mission-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .mission-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .6rem; }
-    .mission-card p  { font-size: .88rem; color: var(--clr-muted); }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
 
-    .team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
-    .team-card {
-      background: var(--clr-surface); border: 1px solid var(--clr-border);
-      border-radius: var(--radius-md); padding: 1.5rem; text-align: center;
-      box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .team-avatar {
-      width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 1rem;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.8rem; border: 3px solid var(--clr-border);
-    }
-    .team-name  { font-weight: 700; font-size: 1rem; margin-bottom: .2rem; }
-    .team-role  { font-size: .8rem; color: var(--clr-primary); font-weight: 600; margin-bottom: .4rem; }
-    .team-desc  { font-size: .8rem; color: var(--clr-muted); }
+        .about-hero h1 {
+            font-family: var(--ff-display);
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            margin-bottom: 1rem;
+            position: relative;
+        }
 
-    .values-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
-    .value-item {
-      display: flex; gap: 1rem; align-items: flex-start;
-      background: var(--clr-surface); border: 1px solid var(--clr-border);
-      border-radius: var(--radius-md); padding: 1.5rem;
-    }
-    .value-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .value-item h4 { font-weight: 700; margin-bottom: .35rem; }
-    .value-item p  { font-size: .86rem; color: var(--clr-muted); }
+        .about-hero p {
+            font-size: 1.15rem;
+            opacity: .85;
+            max-width: 580px;
+            margin-inline: auto;
+            position: relative;
+        }
 
-    .partner-row { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; }
-    .partner-badge {
-      background: var(--clr-surface); border: 1px solid var(--clr-border);
-      border-radius: var(--radius-md); padding: .85rem 1.75rem;
-      font-size: .88rem; font-weight: 600; color: var(--clr-muted);
-      display: flex; align-items: center; gap: .6rem;
-    }
+        .about-hero .hero-badge {
+            background: rgba(255, 255, 255, .15);
+            border-color: rgba(255, 255, 255, .3);
+            color: #fff;
+            position: relative;
+        }
 
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 3px; background: var(--clr-border); border-radius: 3px;
-    }
-    .tl-item { position: relative; margin-bottom: 2rem; }
-    .tl-dot {
-      position: absolute; left: -2.45rem; top: .25rem;
-      width: 16px; height: 16px; border-radius: 50%;
-      background: var(--clr-primary); border: 3px solid var(--clr-surface);
-      box-shadow: 0 0 0 3px var(--clr-primary);
-    }
-    .tl-year { font-size: .78rem; font-weight: 700; color: var(--clr-primary); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .25rem; }
-    .tl-title { font-weight: 700; margin-bottom: .25rem; }
-    .tl-desc { font-size: .86rem; color: var(--clr-muted); }
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
 
-    @media(max-width:768px){
-      .mission-grid { grid-template-columns: 1fr; }
-      .team-grid    { grid-template-columns: repeat(2,1fr); }
-      .values-grid  { grid-template-columns: 1fr; }
-    }
-    @media(max-width:480px){
-      .team-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+        .mission-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mission-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: .6rem;
+        }
+
+        .mission-card p {
+            font-size: .88rem;
+            color: var(--clr-muted);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            border: 3px solid var(--clr-border);
+        }
+
+        .team-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: .2rem;
+        }
+
+        .team-role {
+            font-size: .8rem;
+            color: var(--clr-primary);
+            font-weight: 600;
+            margin-bottom: .4rem;
+        }
+
+        .team-desc {
+            font-size: .8rem;
+            color: var(--clr-muted);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .value-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+
+        .value-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .value-item h4 {
+            font-weight: 700;
+            margin-bottom: .35rem;
+        }
+
+        .value-item p {
+            font-size: .86rem;
+            color: var(--clr-muted);
+        }
+
+        .partner-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .partner-badge {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            padding: .85rem 1.75rem;
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--clr-muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--clr-border);
+            border-radius: 3px;
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: -2.45rem;
+            top: .25rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--clr-primary);
+            border: 3px solid var(--clr-surface);
+            box-shadow: 0 0 0 3px var(--clr-primary);
+        }
+
+        .tl-year {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--clr-primary);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: .25rem;
+        }
+
+        .tl-title {
+            font-weight: 700;
+            margin-bottom: .25rem;
+        }
+
+        .tl-desc {
+            font-size: .86rem;
+            color: var(--clr-muted);
+        }
+
+        @media(max-width:768px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <a href="../index.html" class="nav-logo"><span class="logo-icon">✚</span><span class="logo-text">Sehat<span class="logo-accent">Ku</span></span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="../index.html" class="nav-link">Beranda</a></li>
-      <li><a href="artikel.html" class="nav-link">Artikel</a></li>
-      <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
-      <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
-      <li><a href="dokter.html" class="nav-link">Cari Dokter</a></li>
-    </ul>
-    <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">🌙</button>
-    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<section class="about-hero">
-  <div class="container">
-    <div class="hero-badge" style="display:inline-flex;margin-bottom:1.25rem">🏥 Didirikan 2020 · Jakarta, Indonesia</div>
-    <h1>Kami Ada untuk Kesehatan<br/>Seluruh Indonesia</h1>
-    <p>SehatKu adalah platform informasi kesehatan digital yang menyajikan konten medis terpercaya, mudah dipahami, dan dapat diakses oleh semua lapisan masyarakat.</p>
-  </div>
-</section>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo"><span class="logo-icon">✚</span><span class="logo-text">Sehat<span
+                        class="logo-accent">Ku</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html" class="nav-link">Beranda</a></li>
+                <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+                <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
+                <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
+                <li><a href="dokter.html" class="nav-link">Cari Dokter</a></li>
+            </ul>
+            <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">🌙</button>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-badge" style="display:inline-flex;margin-bottom:1.25rem">🏥 Didirikan 2020 · Jakarta,
+                Indonesia</div>
+            <h1>Kami Ada untuk Kesehatan<br />Seluruh Indonesia</h1>
+            <p>SehatKu adalah platform informasi kesehatan digital yang menyajikan konten medis terpercaya, mudah
+                dipahami, dan dapat diakses oleh semua lapisan masyarakat.</p>
+        </div>
+    </section>
 
-<!-- MISI -->
-<section class="section">
-  <div class="container">
-    <div class="section-header" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
-      <div class="section-eyebrow">Mengapa Kami Ada</div>
-      <h2 class="section-title">Misi & Visi Kami</h2>
-      <p style="color:var(--clr-muted);max-width:560px;margin-top:.5rem">Kami percaya setiap orang berhak mendapatkan informasi kesehatan yang akurat, tanpa perlu menjadi dokter untuk memahaminya.</p>
-    </div>
-    <div class="mission-grid">
-      <div class="mission-card">
-        <div class="mission-icon">🎯</div>
-        <h3>Misi Kami</h3>
-        <p>Menyediakan informasi kesehatan yang akurat, mudah dipahami, dan dapat diakses secara gratis oleh seluruh masyarakat Indonesia.</p>
-      </div>
-      <div class="mission-card" style="border-color:var(--clr-primary);background:var(--clr-primary-lt)">
-        <div class="mission-icon">🔭</div>
-        <h3>Visi Kami</h3>
-        <p>Menjadi platform kesehatan digital terpercaya nomor satu di Indonesia yang mendorong masyarakat hidup lebih sehat dan sadar kesehatan.</p>
-      </div>
-      <div class="mission-card">
-        <div class="mission-icon">💡</div>
-        <h3>Pendekatan Kami</h3>
-        <p>Menggabungkan keahlian dokter spesialis dengan teknologi AI untuk menghadirkan pengalaman konsultasi dan edukasi kesehatan yang personal.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- MISI -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header"
+                style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+                <div class="section-eyebrow">Mengapa Kami Ada</div>
+                <h2 class="section-title">Misi & Visi Kami</h2>
+                <p style="color:var(--clr-muted);max-width:560px;margin-top:.5rem">Kami percaya setiap orang berhak
+                    mendapatkan informasi kesehatan yang akurat, tanpa perlu menjadi dokter untuk memahaminya.</p>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Misi Kami</h3>
+                    <p>Menyediakan informasi kesehatan yang akurat, mudah dipahami, dan dapat diakses secara gratis oleh
+                        seluruh masyarakat Indonesia.</p>
+                </div>
+                <div class="mission-card" style="border-color:var(--clr-primary);background:var(--clr-primary-lt)">
+                    <div class="mission-icon">🔭</div>
+                    <h3>Visi Kami</h3>
+                    <p>Menjadi platform kesehatan digital terpercaya nomor satu di Indonesia yang mendorong masyarakat
+                        hidup lebih sehat dan sadar kesehatan.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">💡</div>
+                    <h3>Pendekatan Kami</h3>
+                    <p>Menggabungkan keahlian dokter spesialis dengan teknologi AI untuk menghadirkan pengalaman
+                        konsultasi dan edukasi kesehatan yang personal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" style="background:#fff;padding-top:0">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Prinsip Kami</div>
+                <h2 class="section-title">Nilai-Nilai SehatKu</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">🔬</div>
+                    <div>
+                        <h4>Berbasis Bukti Ilmiah</h4>
+                        <p>Setiap konten didukung oleh penelitian ilmiah, jurnal medis peer-reviewed, dan panduan klinis
+                            internasional seperti WHO, CDC, dan IDI.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <div>
+                        <h4>Empati & Keterbukaan</h4>
+                        <p>Kami menulis dengan bahasa yang hangat, tanpa menghakimi, dan sensitif terhadap latar
+                            belakang budaya serta kondisi sosial-ekonomi pembaca.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🔒</div>
+                    <div>
+                        <h4>Privasi & Kepercayaan</h4>
+                        <p>Data pengguna dijaga ketat. Kami tidak menjual data pribadi dan tidak menerima iklan yang
+                            mempengaruhi independensi editorial kami.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">♻️</div>
+                    <div>
+                        <h4>Selalu Diperbarui</h4>
+                        <p>Artikel kami diperbarui secara berkala mengikuti perkembangan ilmu pengetahuan medis terbaru
+                            dan panduan kesehatan terkini.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🌏</div>
+                    <div>
+                        <h4>Inklusif & Merata</h4>
+                        <p>Kami berkomitmen agar informasi kesehatan berkualitas dapat diakses oleh semua orang, dari
+                            Sabang sampai Merauke, secara gratis.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🚫</div>
+                    <div>
+                        <h4>Bebas Konflik Kepentingan</h4>
+                        <p>Kami tidak berafiliasi dengan industri farmasi atau produk obat tertentu. Semua rekomendasi
+                            didasarkan semata pada bukti medis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
