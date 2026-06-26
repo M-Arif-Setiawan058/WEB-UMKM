@@ -1,36 +1,36 @@
 const ARTICLES = [
   {
-    emoji: '❤️', tag: 'Jantung', date: '10 Jun 2025', readTime: '5 menit',
+    emoji: '❤️', tag: 'Jantung', date: '10 Jun 2026', readTime: '5 menit',
     title: '7 Cara Menjaga Kesehatan Jantung di Usia 30-an',
     excerpt: 'Penyakit jantung kini mengintai di usia yang lebih muda. Temukan strategi pencegahan yang terbukti secara ilmiah.',
     url: 'pages/artikel.html',
   },
   {
-    emoji: '🩸', tag: 'Diabetes', date: '8 Jun 2025', readTime: '7 menit',
+    emoji: '🩸', tag: 'Diabetes', date: '8 Jun 2026', readTime: '7 menit',
     title: 'Panduan Lengkap Pola Makan Penderita Diabetes Tipe 2',
     excerpt: 'Diet yang tepat adalah fondasi manajemen diabetes. Pelajari makanan yang boleh dan tidak boleh dikonsumsi.',
     url: 'pages/artikel.html',
   },
   {
-    emoji: '🧠', tag: 'Mental Health', date: '6 Jun 2025', readTime: '4 menit',
+    emoji: '🧠', tag: 'Mental Health', date: '6 Jun 2026', readTime: '4 menit',
     title: 'Mengenali Tanda-tanda Burnout dan Cara Mengatasinya',
     excerpt: 'Burnout bukan sekadar kelelahan biasa. Kenali gejalanya sejak dini dan ambil langkah pemulihan yang tepat.',
     url: 'pages/artikel.html',
   },
   {
-    emoji: '🥗', tag: 'Gizi', date: '4 Jun 2025', readTime: '6 menit',
+    emoji: '🥗', tag: 'Gizi', date: '4 Jun 2026', readTime: '6 menit',
     title: 'Superfood Lokal Indonesia yang Menyehatkan',
     excerpt: 'Tempe, daun kelor, dan kunyit adalah beberapa superfood lokal dengan manfaat luar biasa bagi kesehatan.',
     url: 'pages/artikel.html',
   },
   {
-    emoji: '🏃', tag: 'Olahraga', date: '2 Jun 2025', readTime: '5 menit',
+    emoji: '🏃', tag: 'Olahraga', date: '2 Jun 2026', readTime: '5 menit',
     title: 'Olahraga 30 Menit Sehari: Manfaat yang Mengejutkan',
     excerpt: 'Hanya 30 menit olahraga sedang per hari sudah cukup untuk menurunkan risiko berbagai penyakit kronis.',
     url: 'pages/artikel.html',
   },
   {
-    emoji: '😴', tag: 'Tidur', date: '30 Mei 2025', readTime: '4 menit',
+    emoji: '😴', tag: 'Tidur', date: '30 Mei 2026', readTime: '4 menit',
     title: 'Mengapa Tidur 7-8 Jam Sangat Penting untuk Kesehatan',
     excerpt: 'Kurang tidur berkaitan dengan obesitas, diabetes, dan gangguan imun. Pelajari cara memperbaiki kualitas tidur Anda.',
     url: 'pages/artikel.html',
