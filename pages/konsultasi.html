@@ -163,3 +163,29 @@
           <p>Didukung AI · Online · Merespons dalam hitungan detik</p>
         </div>
       </div>
+      <div class="quick-questions" id="quickQuestions">
+        <span style="font-size:.76rem;color:var(--clr-muted);font-weight:600;width:100%;display:block">💡 Pertanyaan cepat:</span>
+        <button class="quick-q" onclick="sendQuickQ(this)">Gejala demam tinggi</button>
+        <button class="quick-q" onclick="sendQuickQ(this)">Cara turunkan kolesterol</button>
+        <button class="quick-q" onclick="sendQuickQ(this)">Penyebab sakit kepala</button>
+        <button class="quick-q" onclick="sendQuickQ(this)">Tips tidur nyenyak</button>
+        <button class="quick-q" onclick="sendQuickQ(this)">Makanan untuk diabetesi</button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <!-- Messages injected by JS -->
+      </div>
+
+      <div class="chat-input-area">
+        <textarea
+          class="chat-input" id="chatInput"
+          placeholder="Ketik gejala atau pertanyaan kesehatan Anda..."
+          rows="1"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"
+        ></textarea>
+        <button class="chat-send-btn" id="sendBtn" onclick="sendMessage()" aria-label="Kirim">➤</button>
+      </div>
+    </div>
+  </div>
+</section>
