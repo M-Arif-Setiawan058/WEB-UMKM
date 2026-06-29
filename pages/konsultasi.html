@@ -196,3 +196,42 @@
     </div>
   </div>
 </footer>
+<script src="../js/main.js"></script>
+<script>
+const SYSTEM_PROMPT = `Anda adalah Asisten Kesehatan SehatKu, sebuah portal informasi kesehatan Indonesia yang terpercaya. 
+
+Tugas Anda:
+- Memberikan informasi kesehatan yang akurat, berbasis bukti, dan mudah dipahami dalam Bahasa Indonesia
+- Menjelaskan gejala, kemungkinan penyebab, dan langkah pertolongan pertama yang tepat
+- Menyarankan kapan seseorang perlu ke dokter atau IGD
+- Memberikan tips gaya hidup sehat yang praktis
+
+Aturan penting:
+- Selalu ingatkan bahwa informasi ini bersifat umum dan tidak menggantikan konsultasi dokter
+- Jangan memberikan diagnosis pasti atau meresepkan obat spesifik
+- Gunakan bahasa yang hangat, empati, dan mudah dipahami masyarakat awam
+- Untuk kondisi darurat (nyeri dada hebat, sesak napas berat, stroke, dll), langsung sarankan ke IGD atau hubungi 119
+- Berikan respons yang terstruktur: gejala → kemungkinan penyebab → apa yang harus dilakukan → kapan ke dokter
+- Gunakan emoji secukupnya untuk memudahkan pembacaan`;
+
+let chatHistory = [];
+let isLoading = false;
+
+function addMessage(role, text, isTyping = false) {
+  const container = document.getElementById('chatMessages');
+  const now = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+  const isUser = role === 'user';
+  const div = document.createElement('div');
+  div.className = `msg ${isUser ? 'user' : 'bot'}`;
+  if (isTyping) div.id = 'typingMsg';
+  div.innerHTML = `
+    <div class="msg-icon">${isUser ? '👤' : '🩺'}</div>
+    <div>
+      <div class="msg-bubble">${isTyping ? '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>' : text.replace(/\n/g, '<br/>')}</div>
+      ${!isTyping ? `<div class="msg-time">${now}</div>` : ''}
+    </div>
+  `;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return div;
+}
