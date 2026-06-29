@@ -289,3 +289,31 @@ async function sendMessage() {
     document.getElementById('sendBtn').disabled = false;
   }
 }
+function sendQuickQ(btn) {
+  const input = document.getElementById('chatInput');
+  input.value = btn.textContent;
+  sendMessage();
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+}
+
+// Initial greeting
+document.addEventListener('DOMContentLoaded', () => {
+  addMessage('bot',
+    '👋 Halo! Saya Asisten Kesehatan SehatKu.\n\nSaya siap membantu Anda dengan informasi kesehatan — mulai dari gejala penyakit, tips hidup sehat, hingga kapan Anda perlu ke dokter.\n\n💬 Ceritakan apa yang Anda rasakan atau tanyakan apa saja tentang kesehatan!'
+  );
+});
+</script>
+<script src="../js/darkmode.js"></script>
+</body>
+</html>
