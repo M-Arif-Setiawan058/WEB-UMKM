@@ -1,109 +1,115 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kategori — SehatKu</title>
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml"/>
-  <link rel="stylesheet" href="../css/main.css"/>
-  <link rel="stylesheet" href="../css/components.css"/>
-  <link rel="stylesheet" href="../css/darkmode.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/darkmode.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap"
+    rel="stylesheet" />
 </head>
+
 <body>
 
-<nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <a href="../index.html" class="nav-logo"><span class="logo-icon">✚</span><span class="logo-text">Sehat<span class="logo-accent">Ku</span></span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="../index.html" class="nav-link">Beranda</a></li>
-      <li><a href="artikel.html" class="nav-link">Artikel</a></li>
-      <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
-      <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
-      <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
-    </ul>
-    <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">🌙</button>
-    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<section class="page-hero" id="catHero">
-  <div class="container">
-    <div class="breadcrumb" style="justify-content:center">
-      <a href="../index.html">Beranda</a>
-      <span>›</span>
-      <a href="artikel.html">Artikel</a>
-      <span>›</span>
-      <span id="catNameBreadcrumb">Kategori</span>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo"><span class="logo-icon">✚</span><span class="logo-text">Sehat<span
+            class="logo-accent">Ku</span></span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html" class="nav-link">Beranda</a></li>
+        <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+        <li><a href="penyakit.html" class="nav-link">Ensiklopedi Penyakit</a></li>
+        <li><a href="obat.html" class="nav-link">Obat & Suplemen</a></li>
+        <li><a href="kalkulator.html" class="nav-link">Kalkulator</a></li>
+      </ul>
+      <button class="nav-cta" onclick="window.location.href='konsultasi.html'">Konsultasi Gratis</button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">🌙</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </div>
-    <div class="section-eyebrow" id="catEyebrow">Kategori</div>
-    <h1 id="catTitle">Memuat...</h1>
-    <p id="catDesc"></p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="sidebar-layout">
-      <div>
-        <div id="catArticles" style="display:flex;flex-direction:column;gap:1.25rem"></div>
+  </nav>
+  <section class="page-hero" id="catHero">
+    <div class="container">
+      <div class="breadcrumb" style="justify-content:center">
+        <a href="../index.html">Beranda</a>
+        <span>›</span>
+        <a href="artikel.html">Artikel</a>
+        <span>›</span>
+        <span id="catNameBreadcrumb">Kategori</span>
       </div>
-      <aside>
-        <div class="sidebar-card">
-          <h3>📁 Semua Kategori</h3>
-          <ul class="sidebar-list" id="catList"></ul>
-        </div>
-        <div class="sidebar-card" style="background:var(--clr-primary-lt);border-color:var(--clr-primary)">
-          <h3>🔍 Cari Informasi</h3>
-          <p style="font-size:.85rem;color:var(--clr-muted);margin-bottom:.75rem">Tidak menemukan yang dicari?</p>
-          <a href="../index.html#mainSearch" class="btn-primary" style="display:block;text-align:center;font-size:.88rem">Cari Sekarang</a>
-        </div>
-      </aside>
+      <div class="section-eyebrow" id="catEyebrow">Kategori</div>
+      <h1 id="catTitle">Memuat...</h1>
+      <p id="catDesc"></p>
     </div>
-  </div>
-</section>
-<footer class="footer">
-  <div class="container">
-    <div class="footer-bottom">
-      <p>© 2026 SehatKu. Informasi di situs ini tidak menggantikan saran dokter profesional.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sidebar-layout">
+        <div>
+          <div id="catArticles" style="display:flex;flex-direction:column;gap:1.25rem"></div>
+        </div>
+        <aside>
+          <div class="sidebar-card">
+            <h3>📁 Semua Kategori</h3>
+            <ul class="sidebar-list" id="catList"></ul>
+          </div>
+          <div class="sidebar-card" style="background:var(--clr-primary-lt);border-color:var(--clr-primary)">
+            <h3>🔍 Cari Informasi</h3>
+            <p style="font-size:.85rem;color:var(--clr-muted);margin-bottom:.75rem">Tidak menemukan yang dicari?</p>
+            <a href="../index.html#mainSearch" class="btn-primary"
+              style="display:block;text-align:center;font-size:.88rem">Cari Sekarang</a>
+          </div>
+        </aside>
+      </div>
     </div>
-  </div>
-</footer>
-<script src="../js/main.js"></script>
-<script>
-const CATEGORIES = {
-  jantung:     { name: 'Jantung & Pembuluh Darah', icon: '❤️', desc: 'Artikel seputar kesehatan jantung, hipertensi, kolesterol, dan sistem kardiovaskular.', count: 128 },
-  diabetes:    { name: 'Diabetes & Metabolisme', icon: '🩸', desc: 'Panduan lengkap seputar diabetes, gula darah, insulin, dan gangguan metabolisme.', count: 94 },
-  pencernaan:  { name: 'Kesehatan Pencernaan', icon: '🫁', desc: 'Informasi tentang maag, GERD, usus besar, liver, dan gangguan pencernaan lainnya.', count: 76 },
-  mental:      { name: 'Kesehatan Mental', icon: '🧠', desc: 'Artikel tentang depresi, kecemasan, stres, tidur, dan kesejahteraan psikologis.', count: 112 },
-  anak:        { name: 'Kesehatan Anak', icon: '👶', desc: 'Panduan tumbuh kembang, imunisasi, penyakit anak, dan nutrisi bayi & balita.', count: 89 },
-  kulit:       { name: 'Kulit & Kecantikan', icon: '🌿', desc: 'Tips dan informasi perawatan kulit, jerawat, eksim, dan kondisi dermatologis lainnya.', count: 65 },
-  tulang:      { name: 'Tulang & Sendi', icon: '🦴', desc: 'Panduan osteoporosis, arthritis, nyeri punggung, dan kesehatan sistem muskuloskeletal.', count: 57 },
-  gizi:        { name: 'Gizi & Diet', icon: '🥗', desc: 'Panduan nutrisi seimbang, diet sehat, suplemen, dan kebutuhan gizi berbagai usia.', count: 103 },
-};
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 SehatKu. Informasi di situs ini tidak menggantikan saran dokter profesional.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+  <script>
+    const CATEGORIES = {
+      jantung: { name: 'Jantung & Pembuluh Darah', icon: '❤️', desc: 'Artikel seputar kesehatan jantung, hipertensi, kolesterol, dan sistem kardiovaskular.', count: 128 },
+      diabetes: { name: 'Diabetes & Metabolisme', icon: '🩸', desc: 'Panduan lengkap seputar diabetes, gula darah, insulin, dan gangguan metabolisme.', count: 94 },
+      pencernaan: { name: 'Kesehatan Pencernaan', icon: '🫁', desc: 'Informasi tentang maag, GERD, usus besar, liver, dan gangguan pencernaan lainnya.', count: 76 },
+      mental: { name: 'Kesehatan Mental', icon: '🧠', desc: 'Artikel tentang depresi, kecemasan, stres, tidur, dan kesejahteraan psikologis.', count: 112 },
+      anak: { name: 'Kesehatan Anak', icon: '👶', desc: 'Panduan tumbuh kembang, imunisasi, penyakit anak, dan nutrisi bayi & balita.', count: 89 },
+      kulit: { name: 'Kulit & Kecantikan', icon: '🌿', desc: 'Tips dan informasi perawatan kulit, jerawat, eksim, dan kondisi dermatologis lainnya.', count: 65 },
+      tulang: { name: 'Tulang & Sendi', icon: '🦴', desc: 'Panduan osteoporosis, arthritis, nyeri punggung, dan kesehatan sistem muskuloskeletal.', count: 57 },
+      gizi: { name: 'Gizi & Diet', icon: '🥗', desc: 'Panduan nutrisi seimbang, diet sehat, suplemen, dan kebutuhan gizi berbagai usia.', count: 103 },
+    };
 
-const SAMPLE_ARTICLES = [
-  { emoji:'❤️', date:'10 Jun 2025', time:'5 mnt', title:'7 Cara Menjaga Kesehatan {CAT}', excerpt:'Temukan strategi pencegahan yang terbukti secara ilmiah dari para ahli terkemuka di bidangnya.' },
-  { emoji:'📋', date:'8 Jun 2025',  time:'7 mnt', title:'Panduan Lengkap: Memahami Kondisi {CAT}', excerpt:'Penjelasan komprehensif tentang penyebab, gejala, dan pilihan pengobatan terkini.' },
-  { emoji:'🍽️', date:'5 Jun 2025',  time:'6 mnt', title:'Makanan Terbaik untuk Mendukung {CAT}', excerpt:'Nutrisi yang tepat dapat membantu mencegah dan mengelola berbagai kondisi kesehatan.' },
-  { emoji:'🏃', date:'2 Jun 2025',  time:'4 mnt', title:'Olahraga dan Pengaruhnya pada {CAT}', excerpt:'Aktivitas fisik yang tepat bisa memberikan manfaat luar biasa bagi kesehatan Anda.' },
-  { emoji:'💊', date:'30 Mei 2025', time:'5 mnt', title:'Obat dan Suplemen untuk {CAT}', excerpt:'Panduan berbasis bukti tentang pilihan pengobatan dan suplementasi yang tersedia.' },
-  { emoji:'🔬', date:'25 Mei 2025', time:'8 mnt', title:'Penelitian Terbaru tentang {CAT}', excerpt:'Update terkini dari jurnal medis internasional tentang perkembangan ilmu di bidang ini.' },
-];
-document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const catKey = params.get('c') || 'jantung';
-  const cat = CATEGORIES[catKey] || CATEGORIES.jantung;
+    const SAMPLE_ARTICLES = [
+      { emoji: '❤️', date: '10 Jun 2025', time: '5 mnt', title: '7 Cara Menjaga Kesehatan {CAT}', excerpt: 'Temukan strategi pencegahan yang terbukti secara ilmiah dari para ahli terkemuka di bidangnya.' },
+      { emoji: '📋', date: '8 Jun 2025', time: '7 mnt', title: 'Panduan Lengkap: Memahami Kondisi {CAT}', excerpt: 'Penjelasan komprehensif tentang penyebab, gejala, dan pilihan pengobatan terkini.' },
+      { emoji: '🍽️', date: '5 Jun 2025', time: '6 mnt', title: 'Makanan Terbaik untuk Mendukung {CAT}', excerpt: 'Nutrisi yang tepat dapat membantu mencegah dan mengelola berbagai kondisi kesehatan.' },
+      { emoji: '🏃', date: '2 Jun 2025', time: '4 mnt', title: 'Olahraga dan Pengaruhnya pada {CAT}', excerpt: 'Aktivitas fisik yang tepat bisa memberikan manfaat luar biasa bagi kesehatan Anda.' },
+      { emoji: '💊', date: '30 Mei 2025', time: '5 mnt', title: 'Obat dan Suplemen untuk {CAT}', excerpt: 'Panduan berbasis bukti tentang pilihan pengobatan dan suplementasi yang tersedia.' },
+      { emoji: '🔬', date: '25 Mei 2025', time: '8 mnt', title: 'Penelitian Terbaru tentang {CAT}', excerpt: 'Update terkini dari jurnal medis internasional tentang perkembangan ilmu di bidang ini.' },
+    ];
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const catKey = params.get('c') || 'jantung';
+      const cat = CATEGORIES[catKey] || CATEGORIES.jantung;
 
-  document.title = `${cat.name} — SehatKu`;
-  document.getElementById('catTitle').textContent = `${cat.icon} ${cat.name}`;
-  document.getElementById('catDesc').textContent = cat.desc;
-  document.getElementById('catEyebrow').textContent = `${cat.count} Artikel`;
-  document.getElementById('catNameBreadcrumb').textContent = cat.name;
+      document.title = `${cat.name} — SehatKu`;
+      document.getElementById('catTitle').textContent = `${cat.icon} ${cat.name}`;
+      document.getElementById('catDesc').textContent = cat.desc;
+      document.getElementById('catEyebrow').textContent = `${cat.count} Artikel`;
+      document.getElementById('catNameBreadcrumb').textContent = cat.name;
 
-  // Articles
-  const grid = document.getElementById('catArticles');
-  grid.innerHTML = SAMPLE_ARTICLES.map(a => `
+      // Articles
+      const grid = document.getElementById('catArticles');
+      grid.innerHTML = SAMPLE_ARTICLES.map(a => `
     <div class="article-card" style="display:grid;grid-template-columns:100px 1fr;overflow:hidden">
       <div class="article-img" style="height:100%;min-height:100px;font-size:2.5rem">${a.emoji}</div>
       <div class="article-body">
@@ -117,3 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
   `).join('');
+      const list = document.getElementById('catList');
+      list.innerHTML = Object.entries(CATEGORIES).map(([key, c]) => `
+    <li><a href="kategori.html?c=${key}" style="${key === catKey ? 'color:var(--clr-primary);font-weight:700' : ''}">${c.icon} ${c.name} <span style="float:right;color:var(--clr-muted);font-size:.78rem">${c.count}</span></a></li>
+  `).join('');
+    });
+  </script>
+  <script src="../js/darkmode.js"></script>
+</body>
+
+</html>
